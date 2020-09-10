@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-10 21:12+0200\n"
+"POT-Creation-Date: 2020-09-10 22:09+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -271,6 +271,14 @@ msgstr ""
 #: models.py:195
 msgid "Color"
 msgstr "Farbe"
+
+#: models.py:215
+msgid "Unencrypted"
+msgstr "Unverschlüsselt"
+
+#: models.py:216
+msgid "Encrypted with GNU Privacy Guard"
+msgstr "Verschlüsselt mit GNU Privacy Guard"
 
 #: models.py:230
 msgid "Title"

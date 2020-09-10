@@ -212,8 +212,8 @@ class Document(models.Model):
     STORAGE_TYPE_UNENCRYPTED = "unencrypted"
     STORAGE_TYPE_GPG = "gpg"
     STORAGE_TYPES = (
-        (STORAGE_TYPE_UNENCRYPTED, "Unencrypted"),
-        (STORAGE_TYPE_GPG, "Encrypted with GNU Privacy Guard")
+        (STORAGE_TYPE_UNENCRYPTED, _("Unencrypted")),
+        (STORAGE_TYPE_GPG, _("Encrypted with GNU Privacy Guard"))
     )
 
     correspondent = models.ForeignKey(
