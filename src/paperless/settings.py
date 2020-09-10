@@ -29,7 +29,9 @@ def __get_boolean(key, default="NO"):
     Return a boolean value based on whatever the user has supplied in the
     environment based on whether the value "looks like" it's True or not.
     """
-    return bool(os.getenv(key, default).lower() in ("yes", "y", "1", "t", "true"))
+    return bool(
+        os.getenv(key, default).lower() in ("yes", "y", "1", "t", "true")
+    )
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -109,7 +111,10 @@ MIDDLEWARE = [
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # We allow CORS from localhost:8080
-CORS_ORIGIN_WHITELIST = tuple(os.getenv("PAPERLESS_CORS_ALLOWED_HOSTS", "http://localhost:8080,https://localhost:8080").split(","))
+CORS_ORIGIN_WHITELIST = tuple(os.getenv(
+    "PAPERLESS_CORS_ALLOWED_HOSTS",
+    "http://localhost:8080,https://localhost:8080"
+).split(","))
 
 # If auth is disabled, we just use our "bypass" authentication middleware
 if bool(os.getenv("PAPERLESS_DISABLE_LOGIN", "false").lower() in ("yes", "y", "1", "t", "true")):
@@ -189,14 +194,10 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
-
+LANGUAGE_CODE = 'de'
 TIME_ZONE = os.getenv("PAPERLESS_TIME_ZONE", "UTC")
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 
@@ -263,6 +264,7 @@ FORGIVING_OCR = __get_boolean("PAPERLESS_FORGIVING_OCR")
 
 # GNUPG needs a home directory for some reason
 GNUPG_HOME = os.getenv("HOME", "/tmp")
+GNUPG_BINARY = os.getenv("GNUPG_BINARY", "/usr/local/opt/gnupg/bin/gpg")
 
 # Convert is part of the ImageMagick package
 CONVERT_BINARY = os.getenv("PAPERLESS_CONVERT_BINARY", "convert")
