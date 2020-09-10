@@ -1,0 +1,317 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-09-10 16:06+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: admin.py:29
+msgid "Financial Year"
+msgstr "Geschäftsjahr"
+
+#: admin.py:104
+msgid "Correspondent (Recent)"
+msgstr "Korrespondent (Neueste)"
+
+#: apps.py:9 models.py:282
+msgid "Documents"
+msgstr "Dokumente"
+
+#: checks.py:25
+msgid "The database contains encrypted documents but no password is set."
+msgstr ""
+"Die Datenbank enthält verschlüsselte Dokumente, es ist aber kein Passwort "
+"gesetzt."
+
+#: checks.py:31
+msgid ""
+"\n"
+"                The current password doesn't match the password of the\n"
+"                existing documents.\n"
+"\n"
+"                If you intend to change your password, you must first "
+"export\n"
+"                all of the old documents, start fresh with the new password\n"
+"                and then re-import them.\"\n"
+"                "
+msgstr ""
+"\n"
+"                Das Passwort passt nicht zum Dokument.\n"
+"\n"
+"                Wenn Sie Ihr Passwort wechseln möchten, müssen Sie "
+"zuerst                alle alten Dokumente exportieren, um sie dann mit dem "
+"neuen\n"
+"                Passwort zu re-importieren.\"\n"
+"                "
+
+#: consumer.py:61
+msgid "The CONSUMPTION_DIR settings variable does not appear to be set."
+msgstr "Die CONSUMPTION_DIR settings Variable scheint nicht gesetzt zu sein."
+
+#: consumer.py:67
+msgid "Consumption directory {} does not exist"
+msgstr "Das Import-Verzeichniss {} existiert nicht."
+
+#: consumer.py:75
+msgid "No parsers could be found, not even the default. This is a problem."
+msgstr ""
+"Es konnten keine Parser gefunden werden, auch nicht der Standard-Parser."
+
+#: filters.py:42
+msgid "Is tagged"
+msgstr "Markiert"
+
+#: forms.py:52
+msgid "That correspondent name is suspicious."
+msgstr "Dieser Name des Korrespondenten sieht verdächtig aus."
+
+#: forms.py:64
+msgid "That title is suspicious."
+msgstr "Dieser Titel sieht verdächtig aus."
+
+#: forms.py:76
+msgid "The file type is invalid."
+msgstr "Der Dateityp ist ungültig."
+
+#: mail.py:93
+msgid "There don't appear to be any attachments to this message"
+msgstr "Die Nachricht scheint keine Anhänge zu haben."
+
+#: mail.py:98
+msgid ""
+"There's more than one attachment to this message. It cannot be indexed "
+"automatically."
+msgstr ""
+"Die Nachricht hat mehr als einen Anhang. Diese können nicht automatisch "
+"indiziert werden"
+
+#: mail.py:109
+msgid "Message does not have a subject"
+msgstr "Die Nachricht hat keinen Betreff"
+
+#: mail.py:112
+msgid "Message subject is unsafe: {}"
+msgstr "Der Betreff der Nachricht is unsicher: {}"
+
+#: mail.py:117
+msgid "The secret wasn't in the body"
+msgstr "Der geheime Schlüssel ist nicht im Nachrichtentext enthalten"
+
+#: mail.py:186
+msgid "Checking mail"
+msgstr "Suche nach neuen Emails"
+
+#: mail.py:190
+msgid "Storing email: \"{}\""
+msgstr "Nachricht speichern: \"{}\""
+
+#: mail.py:233
+msgid "Can't log into mail: {}"
+msgstr "Die Email Anmeldung ist fehlgeschlagen: {}"
+
+#: mail.py:239
+msgid "Can't find the inbox: {}"
+msgstr "Eingangspostkorb nicht gefunden: {}"
+
+#: managers.py:43
+msgid ""
+"There's currently no support for {} when it comes to group concatenation in "
+"Paperless"
+msgstr ""
+"Es gibt derzeit keine Unterstützung für {} bei der Verkettung von Gruppen in "
+"Paperless"
+
+#: models.py:36
+msgid "Any"
+msgstr "beliebig"
+
+#: models.py:37
+msgid "All"
+msgstr "alle"
+
+#: models.py:38
+msgid "Literal"
+msgstr "exakt"
+
+#: models.py:39
+msgid "Regular Expression"
+msgstr "regex"
+
+#: models.py:40
+msgid "Fuzzy Match"
+msgstr "fuzzy"
+
+#: models.py:43
+msgid "Name"
+msgstr ""
+
+#: models.py:44
+msgid "Slug"
+msgstr ""
+
+#: models.py:46
+msgid "Match"
+msgstr "Übereinstimmung"
+
+#: models.py:48
+msgid "Matching algorithm"
+msgstr "Abgleich-Algorithmus"
+
+#: models.py:52
+msgid ""
+"Which algorithm you want to use when matching text to the OCR'd PDF.  Here, "
+"\"any\" looks for any occurrence of any word provided in the PDF, while \"all"
+"\" requires that every word provided appear in the PDF, albeit not in the "
+"order provided.  A \"literal\" match means that the text you enter must "
+"appear in the PDF exactly as you've entered it, and \"regular expression\" "
+"uses a regex to match the PDF.  (If you don't know what a regex is, you "
+"probably don't want this option.)  Finally, a \"fuzzy match\" looks for "
+"words or phrases that are mostly—but not exactly—the same, which can be "
+"useful for matching against documents containg imperfections that foil "
+"accurate OCR."
+msgstr ""
+"Welchen Algorithmus Sie beim Abgleich von Text mit der OCR-PDF verwenden "
+"möchten: \"beliebig\" sucht nach dem Vorkommen eines beliebigen Wortes in "
+"der PDF-Datei, während \"alle\" verlangt, dass jedes bereitgestellte Wort in "
+"der PDF-Datei erscheint, wenn auch nicht in der Reihenfolge.  Eine \"exakte"
+"\" Übereinstimmung bedeutet, dass der von Ihnen eingegebene Text genau so in "
+"der PDF-Datei enthalten ist, wie Sie ihn eingegeben haben. \"regex\" "
+"verwendet einen Regulären Ausdruck, um die PDF-Datei abzugleichen. (Wenn Sie "
+"nicht wissen, was ein Regulären Ausdruck ist, verwenden Sie diese Option "
+"nicht). Schließlich sucht \"fuzzy\" nach Worten oder Ausdrücken, die "
+"ungefähr - aber nicht genau - gleich sind. Dies nützlich für den Abgleich "
+"mit Dokumenten, die Ungenauigkeiten aufweisen."
+
+#: models.py:66
+msgid "is_insensitive"
+msgstr "Groß- und Kleinschreibung ignorieren"
+
+#: models.py:133
+msgid "Unsupported matching algorithm"
+msgstr "Nicht unterstützter Abgleich-Algorithmus"
+
+#: models.py:173
+msgid "Tag"
+msgstr ""
+
+#: models.py:174
+msgid "Tags"
+msgstr ""
+
+#: models.py:193
+msgid "Color"
+msgstr "Farbe"
+
+#: models.py:231
+msgid ""
+"The raw, text-only data of the document. This field is primarily used for "
+"searching."
+msgstr ""
+"Die reinen Text-Rohdaten des Dokuments. Dieses Feld wird hauptsächlich für "
+"die Suche verwendet."
+
+#: models.py:250
+msgid ""
+"The checksum of the original document (before it was encrypted).  We use "
+"this to prevent duplicate document imports."
+msgstr ""
+"Die Prüfsumme des Originaldokuments (bevor es verschlüsselt wurde). Sie wird "
+"verwendet, um doppelte Dokumentenimporte zu verhindern."
+
+#: models.py:276
+msgid "Current filename in storage"
+msgstr "Aktueller Dateiname im Speicher"
+
+#: models.py:281
+msgid "Document"
+msgstr "Dokument"
+
+#: models.py:578
+msgid "Group"
+msgstr "Gruppe"
+
+#: models.py:579
+msgid "Message"
+msgstr "Nachricht"
+
+#: models.py:581
+msgid "Level"
+msgstr "Ebene"
+
+#: models.py:583
+msgid "Created"
+msgstr "Erzeugt"
+
+#: models.py:584
+msgid "Modified"
+msgstr "Geändert"
+
+#: models.py:590
+msgid "Log"
+msgstr ""
+
+#: models.py:591
+msgid "Logs"
+msgstr ""
+
+#: templates/admin/documents/document/change_list_results.html:131
+msgid "Remove from sorting"
+msgstr "Aus der Sortierung entfernen"
+
+#: templates/admin/documents/document/change_list_results.html:132
+#, python-format
+msgid "Sorting priority: %(priority_number)s"
+msgstr "Reihenfolge der Sortierung %(priority_number)s"
+
+#: templates/admin/documents/document/change_list_results.html:133
+msgid "Toggle sorting"
+msgstr "Sortierung ein- oder ausschalten"
+
+#: templates/admin/documents/document/select_object.html:20
+msgid "Home"
+msgstr "Start"
+
+#: templates/admin/documents/document/select_object.html:45
+msgid "Confirm"
+msgstr "Bestätigen"
+
+#: templates/admin/documents/document/select_object.html:46
+msgid "Go back"
+msgstr "Zurück"
+
+#: templates/admin/index.html:11
+msgid "Search documents"
+msgstr "Dokumente suchen"
+
+#: templates/admin/index.html:17
+msgid "Search"
+msgstr "Suchen"
+
+#: templates/admin/index.html:30
+msgid "Recent actions"
+msgstr "Letzte Aktionen"
+
+#: templates/admin/index.html:31
+msgid "My actions"
+msgstr "Meine Aktionen"
+
+#: templates/admin/index.html:35
+msgid "None available"
+msgstr "Keine verfügbar"
+
+#: templates/admin/index.html:49
+msgid "Unknown content"
+msgstr "Unbekannter Inhalt"

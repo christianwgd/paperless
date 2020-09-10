@@ -3,12 +3,13 @@ import textwrap
 from django.conf import settings
 from django.core.checks import Error, register
 from django.db.utils import OperationalError, ProgrammingError
+from django.utils.translation import gettext_lazy as _
 
 
 @register()
 def changed_password_check(app_configs, **kwargs):
 
-    from documents.models import Document
+    from .models import Document
     from paperless.db import GnuPG
 
     try:
@@ -20,13 +21,13 @@ def changed_password_check(app_configs, **kwargs):
     if encrypted_doc:
 
         if not settings.PASSPHRASE:
-            return [Error(
+            return [Error(_(
                 "The database contains encrypted documents but no password "
                 "is set."
-            )]
+            ))]
 
         if not GnuPG.decrypted(encrypted_doc.source_file):
-            return [Error(textwrap.dedent(
+            return [Error(textwrap.dedent(_(
                 """
                 The current password doesn't match the password of the
                 existing documents.
@@ -34,6 +35,6 @@ def changed_password_check(app_configs, **kwargs):
                 If you intend to change your password, you must first export
                 all of the old documents, start fresh with the new password
                 and then re-import them."
-                """))]
+                """)))]
 
     return []

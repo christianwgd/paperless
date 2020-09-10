@@ -12,8 +12,9 @@ from django.utils.html import format_html, format_html_join
 from django.utils.http import urlquote
 from django.utils.safestring import mark_safe
 from djangoql.admin import DjangoQLSearchMixin
+from django.utils.translation import gettext_lazy as _
 
-from documents.actions import (
+from .actions import (
     add_tag_to_selected,
     remove_correspondent_from_selected,
     remove_tag_from_selected,
@@ -25,7 +26,7 @@ from .models import Correspondent, Document, Log, Tag
 
 class FinancialYearFilter(admin.SimpleListFilter):
 
-    title = "Financial Year"
+    title = _("Financial Year")
     parameter_name = "fy"
     _fy_wraps = None
 
@@ -100,7 +101,7 @@ class RecentCorrespondentFilter(admin.RelatedFieldListFilter):
         correspondents = Correspondent.objects.all()
 
         if years and years > 0:
-            self.title = "Correspondent (Recent)"
+            self.title = _("Correspondent (Recent)")
             days = 365 * years
             correspondents = correspondents.filter(
                 documents__created__gte=datetime.now() - timedelta(days=days)

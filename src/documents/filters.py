@@ -1,4 +1,5 @@
 from django_filters.rest_framework import BooleanFilter, FilterSet
+from django.utils.translation import gettext_lazy as _
 
 from .models import Correspondent, Document, Tag
 
@@ -38,7 +39,7 @@ class TagFilterSet(FilterSet):
 class DocumentFilterSet(FilterSet):
 
     tags_empty = BooleanFilter(
-        label="Is tagged",
+        label=_("Is tagged"),
         field_name="tags",
         lookup_expr="isnull",
         exclude=True

@@ -4,7 +4,7 @@ from django.contrib.admin.utils import model_ngettext
 from django.core.exceptions import PermissionDenied
 from django.template.response import TemplateResponse
 
-from documents.models import Correspondent, Tag
+from .models import Correspondent, Tag
 
 
 def select_action(

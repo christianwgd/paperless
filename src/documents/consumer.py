@@ -9,8 +9,9 @@ import uuid
 
 from operator import itemgetter
 from django.conf import settings
+from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
-from paperless.db import GnuPG
+from src.paperless.db import GnuPG
 
 from .models import Document, FileInfo, Tag
 from .parsers import ParseError
@@ -57,13 +58,13 @@ class Consumer:
 
         if not self.consume:
             raise ConsumerError(
-                "The CONSUMPTION_DIR settings variable does not appear to be "
-                "set."
+                _("The CONSUMPTION_DIR settings variable does not appear to be "
+                "set.")
             )
 
         if not os.path.exists(self.consume):
             raise ConsumerError(
-                "Consumption directory {} does not exist".format(self.consume))
+                _("Consumption directory {} does not exist").format(self.consume))
 
         self.parsers = []
         for response in document_consumer_declaration.send(self):
@@ -71,8 +72,8 @@ class Consumer:
 
         if not self.parsers:
             raise ConsumerError(
-                "No parsers could be found, not even the default.  "
-                "This is a problem."
+                _("No parsers could be found, not even the default. "
+                "This is a problem.")
             )
 
     def log(self, level, message):

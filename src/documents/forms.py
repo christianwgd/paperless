@@ -6,6 +6,7 @@ from time import mktime
 
 from django import forms
 from django.conf import settings
+from django.utils.translation import gettext_lazy as _
 
 from .models import Document, Correspondent
 
@@ -48,7 +49,7 @@ class UploadForm(forms.Form):
 
         if not Correspondent.SAFE_REGEX.match(corresp) or " - " in corresp:
             raise forms.ValidationError(
-                "That correspondent name is suspicious.")
+                _("That correspondent name is suspicious."))
 
         return corresp
 
@@ -60,7 +61,7 @@ class UploadForm(forms.Form):
             return None
 
         if not Correspondent.SAFE_REGEX.match(title) or " - " in title:
-            raise forms.ValidationError("That title is suspicious.")
+            raise forms.ValidationError(_("That title is suspicious."))
 
         return title
 
@@ -72,7 +73,7 @@ class UploadForm(forms.Form):
             file_type = m.id_buffer(document)
 
         if file_type not in self.TYPE_LOOKUP:
-            raise forms.ValidationError("The file type is invalid.")
+            raise forms.ValidationError(_("The file type is invalid."))
 
         self._file_type = self.TYPE_LOOKUP[file_type]
 

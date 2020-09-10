@@ -13,6 +13,7 @@ from django.db import models
 from django.template.defaultfilters import slugify
 from django.utils import timezone
 from django.utils.text import slugify
+from django.utils.translation import gettext_lazy as _
 from fuzzywuzzy import fuzz
 from collections import defaultdict
 
@@ -32,22 +33,23 @@ class MatchingModel(models.Model):
     MATCH_REGEX = 4
     MATCH_FUZZY = 5
     MATCHING_ALGORITHMS = (
-        (MATCH_ANY, "Any"),
-        (MATCH_ALL, "All"),
-        (MATCH_LITERAL, "Literal"),
-        (MATCH_REGEX, "Regular Expression"),
-        (MATCH_FUZZY, "Fuzzy Match"),
+        (MATCH_ANY, _("Any")),
+        (MATCH_ALL, _("All")),
+        (MATCH_LITERAL, _("Literal")),
+        (MATCH_REGEX, _("Regular Expression")),
+        (MATCH_FUZZY, _("Fuzzy Match")),
     )
 
-    name = models.CharField(max_length=128, unique=True)
-    slug = models.SlugField(blank=True, editable=False)
+    name = models.CharField(_('Name'), max_length=128, unique=True)
+    slug = models.SlugField(_('Slug'), blank=True, editable=False)
 
-    match = models.CharField(max_length=256, blank=True)
+    match = models.CharField(_('Match'), max_length=256, blank=True)
     matching_algorithm = models.PositiveIntegerField(
+        verbose_name=_('Matching algorithm'),
         choices=MATCHING_ALGORITHMS,
         default=MATCH_ANY,
         help_text=(
-            "Which algorithm you want to use when matching text to the OCR'd "
+            _("Which algorithm you want to use when matching text to the OCR'd "
             "PDF.  Here, \"any\" looks for any occurrence of any word "
             "provided in the PDF, while \"all\" requires that every word "
             "provided appear in the PDF, albeit not in the order provided.  A "
@@ -57,11 +59,11 @@ class MatchingModel(models.Model):
             "is, you probably don't want this option.)  Finally, a \"fuzzy "
             "match\" looks for words or phrases that are mostly—but not "
             "exactly—the same, which can be useful for matching against "
-            "documents containg imperfections that foil accurate OCR."
+            "documents containg imperfections that foil accurate OCR.")
         )
     )
 
-    is_insensitive = models.BooleanField(default=True)
+    is_insensitive = models.BooleanField(_('is_insensitive'), default=True)
 
     class Meta:
         abstract = True
@@ -128,7 +130,7 @@ class MatchingModel(models.Model):
 
             return True if fuzz.partial_ratio(match, text) >= 90 else False
 
-        raise NotImplementedError("Unsupported matching algorithm")
+        raise NotImplementedError(_("Unsupported matching algorithm"))
 
     def _split_match(self):
         """
@@ -167,6 +169,10 @@ class Correspondent(MatchingModel):
 
 class Tag(MatchingModel):
 
+    class Meta:
+        verbose_name = _('Tag')
+        verbose_name_plural = _('Tags')
+
     COLOURS = (
         (1, "#a6cee3"),
         (2, "#1f78b4"),
@@ -183,7 +189,9 @@ class Tag(MatchingModel):
         (13, "#cccccc")
     )
 
-    colour = models.PositiveIntegerField(choices=COLOURS, default=1)
+    colour = models.PositiveIntegerField(
+        _('Color'), choices=COLOURS, default=1
+    )
 
 
 class Document(models.Model):
@@ -219,8 +227,10 @@ class Document(models.Model):
     content = models.TextField(
         db_index=True,
         blank=True,
-        help_text="The raw, text-only data of the document.  This field is "
-                  "primarily used for searching."
+        help_text=_(
+            "The raw, text-only data of the document. This field is "
+            "primarily used for searching."
+        )
     )
 
     file_type = models.CharField(
@@ -236,9 +246,11 @@ class Document(models.Model):
         max_length=32,
         editable=False,
         unique=True,
-        help_text="The checksum of the original document (before it was "
-                  "encrypted).  We use this to prevent duplicate document "
-                  "imports."
+        help_text=_(
+            "The checksum of the original document (before it was "
+            "encrypted).  We use this to prevent duplicate document "
+            "imports."
+        )
     )
 
     created = models.DateTimeField(
@@ -261,11 +273,13 @@ class Document(models.Model):
         editable=False,
         default=None,
         null=True,
-        help_text="Current filename in storage"
+        help_text=_("Current filename in storage")
     )
 
     class Meta:
         ordering = ("correspondent", "title")
+        verbose_name = _('Document')
+        verbose_name_plural = _('Documents')
 
     def __str__(self):
         created = self.created.strftime("%Y%m%d%H%M%S")
@@ -561,16 +575,20 @@ class Log(models.Model):
         (logging.CRITICAL, "Critical"),
     )
 
-    group = models.UUIDField(blank=True)
-    message = models.TextField()
-    level = models.PositiveIntegerField(choices=LEVELS, default=logging.INFO)
-    created = models.DateTimeField(auto_now_add=True)
-    modified = models.DateTimeField(auto_now=True)
+    group = models.UUIDField(_('Group'), blank=True)
+    message = models.TextField(_('Message'))
+    level = models.PositiveIntegerField(
+        _('Level'), choices=LEVELS, default=logging.INFO
+    )
+    created = models.DateTimeField(_('Created'), auto_now_add=True)
+    modified = models.DateTimeField(_('Modified'), auto_now=True)
 
     objects = LogManager()
 
     class Meta:
         ordering = ("-modified",)
+        verbose_name = _('Log')
+        verbose_name_plural = _('Logs')
 
     def __str__(self):
         return self.message

@@ -2,6 +2,7 @@ from django.conf import settings
 
 from django.db import models
 from django.db.models.aggregates import Max
+from django.utils.translation import gettext_lazy as _
 
 
 class GroupConcat(models.Aggregate):
@@ -39,8 +40,8 @@ class GroupConcat(models.Aggregate):
             return self.ENGINES[engine]
         except KeyError:
             raise NotImplementedError(
-                "There's currently no support for {} when it comes to group "
-                "concatenation in Paperless".format(engine)
+                _("There's currently no support for {} when it comes to group "
+                "concatenation in Paperless").format(engine)
             )
 
     def _get_function(self):

@@ -1,7 +1,7 @@
 from django.conf import settings
-from django.conf.urls import include, static, url
+from django.conf.urls import include, static
 from django.contrib import admin
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, path, re_path
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import RedirectView
 from rest_framework.routers import DefaultRouter
@@ -17,6 +17,7 @@ from documents.views import (
 )
 from reminders.views import ReminderViewSet
 
+
 router = DefaultRouter()
 router.register(r"correspondents", CorrespondentViewSet)
 router.register(r"documents", DocumentViewSet)
@@ -27,32 +28,32 @@ router.register(r"tags", TagViewSet)
 urlpatterns = [
 
     # API
-    url(
-        r"^api/auth/",
+    path(
+        "api/auth/",
         include(
             ('rest_framework.urls', 'rest_framework'),
             namespace="rest_framework")
     ),
-    url(r"^api/", include((router.urls, 'drf'), namespace="drf")),
+    path("api/", include((router.urls, 'drf'), namespace="drf")),
 
     # File downloads
-    url(
+    re_path(
         r"^fetch/(?P<kind>doc|thumb|preview)/(?P<pk>\d+)$",
         FetchView.as_view(),
         name="fetch"
     ),
 
     # File uploads
-    url(r"^push$", csrf_exempt(PushView.as_view()), name="push"),
+    re_path(r"^push$", csrf_exempt(PushView.as_view()), name="push"),
 
     # Favicon
-    url(r"^favicon.ico$", FaviconView.as_view(), name="favicon"),
+    re_path(r"^favicon.ico$", FaviconView.as_view(), name="favicon"),
 
     # The Django admin
-    url(r"admin/", admin.site.urls),
+    path("admin/", admin.site.urls),
 
     # Redirect / to /admin
-    url(r"^$", RedirectView.as_view(
+    re_path(r"^$", RedirectView.as_view(
         permanent=True, url=reverse_lazy("admin:index"))),
 
 ] + static.static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

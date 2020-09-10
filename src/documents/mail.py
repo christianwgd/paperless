@@ -12,6 +12,7 @@ from email.parser import BytesParser
 from dateutil import parser
 
 from django.conf import settings
+from django.utils.translation import gettext_lazy as _
 
 from .models import Correspondent
 
@@ -89,12 +90,13 @@ class Message(Loggable):
 
         if len(attachments) == 0:
             raise InvalidMessageError(
-                "There don't appear to be any attachments to this message")
+                _("There don't appear to be any attachments to this message")
+            )
 
         if len(attachments) > 1:
             raise InvalidMessageError(
-                "There's more than one attachment to this message. It cannot "
-                "be indexed automatically."
+                _("There's more than one attachment to this message. "
+                "It cannot be indexed automatically.")
             )
 
         self.attachment = attachments[0]
@@ -104,14 +106,15 @@ class Message(Loggable):
 
     def check_subject(self):
         if self.subject is None:
-            raise InvalidMessageError("Message does not have a subject")
+            raise InvalidMessageError(_("Message does not have a subject"))
         if not Correspondent.SAFE_REGEX.match(self.subject):
-            raise InvalidMessageError("Message subject is unsafe: {}".format(
-                self.subject))
+            raise InvalidMessageError(
+                _("Message subject is unsafe: {}").format(self.subject)
+            )
 
     def check_body(self):
         if self.SECRET not in self.body:
-            raise InvalidMessageError("The secret wasn't in the body")
+            raise InvalidMessageError(_("The secret wasn't in the body"))
 
     def _set_time(self, message):
         self.time = datetime.datetime.now()
@@ -180,11 +183,11 @@ class MailFetcher(Loggable):
             # Reset the grouping id for each fetch
             self.logging_group = uuid.uuid4()
 
-            self.log("debug", "Checking mail")
+            self.log("debug", _("Checking mail"))
 
             for message in self._get_messages():
 
-                self.log("info", 'Storing email: "{}"'.format(message.subject))
+                self.log("info", _('Storing email: "{}"').format(message.subject))
 
                 t = int(time.mktime(message.time.timetuple()))
                 file_name = os.path.join(self.consume, message.file_name)
@@ -226,11 +229,15 @@ class MailFetcher(Loggable):
 
         login = self._connection.login(self._username, self._password)
         if not login[0] == "OK":
-            raise MailFetcherError("Can't log into mail: {}".format(login[1]))
+            raise MailFetcherError(
+                _("Can't log into mail: {}").format(login[1])
+            )
 
         inbox = self._connection.select(self._inbox)
         if not inbox[0] == "OK":
-            raise MailFetcherError("Can't find the inbox: {}".format(inbox[1]))
+            raise MailFetcherError(
+                _("Can't find the inbox: {}").format(inbox[1])
+            )
 
     def _fetch(self):
 
