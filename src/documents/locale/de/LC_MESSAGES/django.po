@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-10 16:59+0200\n"
+"POT-Creation-Date: 2020-09-10 21:12+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,8 +44,7 @@ msgstr "Korrespondent für mehrere Dokumente setzen"
 #, python-format
 msgid ""
 "Successfully set correspondent %(selected_object)s on %(count)d %(items)s."
-msgstr ""
-"Korrespondent %(selected_object)s gesetzt für %(count)d %(items)s."
+msgstr "Korrespondent %(selected_object)s gesetzt für %(count)d %(items)s."
 
 #: actions.py:136
 #, python-format
@@ -76,7 +75,7 @@ msgstr "Geschäftsjahr"
 msgid "Correspondent (Recent)"
 msgstr "Korrespondent (Neueste)"
 
-#: apps.py:9 models.py:284
+#: apps.py:9 models.py:297
 msgid "Documents"
 msgstr "Dokumente"
 
@@ -253,7 +252,7 @@ msgstr "Groß- und Kleinschreibung ignorieren"
 msgid "Unsupported matching algorithm"
 msgstr "Nicht unterstützter Abgleich-Algorithmus"
 
-#: models.py:168
+#: models.py:168 models.py:225
 msgid "Correspondent"
 msgstr "Korrespondent"
 
@@ -265,7 +264,7 @@ msgstr "Korrespondenten"
 msgid "Tag"
 msgstr ""
 
-#: models.py:176
+#: models.py:176 models.py:250
 msgid "Tags"
 msgstr ""
 
@@ -273,7 +272,15 @@ msgstr ""
 msgid "Color"
 msgstr "Farbe"
 
-#: models.py:233
+#: models.py:230
+msgid "Title"
+msgstr "Titel"
+
+#: models.py:235
+msgid "Content"
+msgstr "Inhalt"
+
+#: models.py:237
 msgid ""
 "The raw, text-only data of the document. This field is primarily used for "
 "searching."
@@ -281,7 +288,15 @@ msgstr ""
 "Die reinen Text-Rohdaten des Dokuments. Dieses Feld wird hauptsächlich für "
 "die Suche verwendet."
 
-#: models.py:252
+#: models.py:246
+msgid "File type"
+msgstr "Dateityp"
+
+#: models.py:256
+msgid "Checksum"
+msgstr "Prüfsumme"
+
+#: models.py:258
 msgid ""
 "The checksum of the original document (before it was encrypted).  We use "
 "this to prevent duplicate document imports."
@@ -289,39 +304,51 @@ msgstr ""
 "Die Prüfsumme des Originaldokuments (bevor es verschlüsselt wurde). Sie wird "
 "verwendet, um doppelte Dokumentenimporte zu verhindern."
 
-#: models.py:278
-msgid "Current filename in storage"
-msgstr "Aktueller Dateiname im Speicher"
-
-#: models.py:283
-msgid "Document"
-msgstr "Dokument"
-
-#: models.py:580
-msgid "Group"
-msgstr "Gruppe"
-
-#: models.py:581
-msgid "Message"
-msgstr "Nachricht"
-
-#: models.py:583
-msgid "Level"
-msgstr "Ebene"
-
-#: models.py:585
+#: models.py:265 models.py:598
 msgid "Created"
 msgstr "Erzeugt"
 
-#: models.py:586
+#: models.py:269 models.py:599
 msgid "Modified"
 msgstr "Geändert"
 
-#: models.py:592
+#: models.py:277
+msgid "Storage type"
+msgstr "Speichertyp"
+
+#: models.py:282
+msgid "Added"
+msgstr "Hinzugefügt"
+
+#: models.py:290
+msgid "Filename"
+msgstr "Dateiname"
+
+#: models.py:291
+msgid "Current filename in storage"
+msgstr "Aktueller Dateiname im Speicher"
+
+#: models.py:296
+msgid "Document"
+msgstr "Dokument"
+
+#: models.py:593
+msgid "Group"
+msgstr "Gruppe"
+
+#: models.py:594
+msgid "Message"
+msgstr "Nachricht"
+
+#: models.py:596
+msgid "Level"
+msgstr "Ebene"
+
+#: models.py:605
 msgid "Log"
 msgstr ""
 
-#: models.py:593
+#: models.py:606
 msgid "Logs"
 msgstr ""
 

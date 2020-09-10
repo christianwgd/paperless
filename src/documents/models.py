@@ -221,14 +221,18 @@ class Document(models.Model):
         blank=True,
         null=True,
         related_name="documents",
-        on_delete=models.SET_NULL
+        on_delete=models.SET_NULL,
+        verbose_name=_('Correspondent')
     )
 
-    title = models.CharField(max_length=128, blank=True, db_index=True)
+    title = models.CharField(
+        max_length=128, blank=True,
+        verbose_name=_('Title')
+    )
 
     content = models.TextField(
-        db_index=True,
         blank=True,
+        verbose_name=_('Content'),
         help_text=_(
             "The raw, text-only data of the document. This field is "
             "primarily used for searching."
@@ -238,16 +242,18 @@ class Document(models.Model):
     file_type = models.CharField(
         max_length=4,
         editable=False,
-        choices=tuple([(t, t.upper()) for t in TYPES])
+        choices=tuple([(t, t.upper()) for t in TYPES]),
+        verbose_name=_('File type')
     )
 
     tags = models.ManyToManyField(
-        Tag, related_name="documents", blank=True)
+        Tag, related_name="documents", blank=True, verbose_name=_('Tags'))
 
     checksum = models.CharField(
         max_length=32,
         editable=False,
         unique=True,
+        verbose_name=_('Checksum'),
         help_text=_(
             "The checksum of the original document (before it was "
             "encrypted).  We use this to prevent duplicate document "
@@ -256,25 +262,32 @@ class Document(models.Model):
     )
 
     created = models.DateTimeField(
-        default=timezone.now, db_index=True)
+        default=timezone.now, verbose_name=_('Created')
+    )
     modified = models.DateTimeField(
-        auto_now=True, editable=False, db_index=True)
+        auto_now=True, editable=False,
+        verbose_name=_('Modified')
+    )
 
     storage_type = models.CharField(
         max_length=11,
         choices=STORAGE_TYPES,
         default=STORAGE_TYPE_UNENCRYPTED,
-        editable=False
+        editable=False,
+        verbose_name=_('Storage type')
     )
 
     added = models.DateTimeField(
-        default=timezone.now, editable=False, db_index=True)
+        default=timezone.now, editable=False,
+        verbose_name=_('Added')
+    )
 
     filename = models.FilePathField(
         max_length=256,
         editable=False,
         default=None,
         null=True,
+        verbose_name=_('Filename'),
         help_text=_("Current filename in storage")
     )
 
