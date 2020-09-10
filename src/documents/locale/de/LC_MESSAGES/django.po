@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-10 16:06+0200\n"
+"POT-Creation-Date: 2020-09-10 16:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +18,56 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: actions.py:93
+msgid "Add tag to multiple documents"
+msgstr "Tag zu mehreren Dokumenten hinzufügen"
+
+#: actions.py:96
+#, python-format
+msgid "Successfully added tag %(selected_object)s to %(count)d %(items)s."
+msgstr "Tag %(selected_object)s zu %(count)d %(items)s zugefügt."
+
+#: actions.py:107
+msgid "Remove tag from multiple documents"
+msgstr "Tag von mehreren Dokumenten entfernen"
+
+#: actions.py:110
+#, python-format
+msgid "Successfully removed tag %(selected_object)s from %(count)d %(items)s."
+msgstr "Tag %(selected_object)s von %(count)d %(items)s entfernt."
+
+#: actions.py:122
+msgid "Set correspondent on multiple documents"
+msgstr "Korrespondent für mehrere Dokumente setzen"
+
+#: actions.py:125
+#, python-format
+msgid ""
+"Successfully set correspondent %(selected_object)s on %(count)d %(items)s."
+msgstr ""
+"Korrespondent %(selected_object)s gesetzt für %(count)d %(items)s."
+
+#: actions.py:136
+#, python-format
+msgid "Successfully removed correspondent from %(count)d %(items)s."
+msgstr "Korrespondent von %(count)d %(items)s entfernt."
+
+#: actions.py:142
+msgid "Add tag to selected documents"
+msgstr "Tag zu ausgewähltem Dokument hinzufügen"
+
+#: actions.py:144
+msgid "Remove tag from selected documents"
+msgstr "Tag von ausgewähltem Dokument entfernen"
+
+#: actions.py:146
+msgid "Set correspondent on selected documents"
+msgstr "Korrespondent für ausgewählte Dokumente setzen"
+
+#: actions.py:148
+msgid "Remove correspondent from selected documents"
+msgstr "Korrespondent von ausgewählten Dokumenten entfernen"
+
 #: admin.py:29
 msgid "Financial Year"
 msgstr "Geschäftsjahr"
@@ -26,7 +76,7 @@ msgstr "Geschäftsjahr"
 msgid "Correspondent (Recent)"
 msgstr "Korrespondent (Neueste)"
 
-#: apps.py:9 models.py:282
+#: apps.py:9 models.py:284
 msgid "Documents"
 msgstr "Dokumente"
 
@@ -203,19 +253,27 @@ msgstr "Groß- und Kleinschreibung ignorieren"
 msgid "Unsupported matching algorithm"
 msgstr "Nicht unterstützter Abgleich-Algorithmus"
 
-#: models.py:173
+#: models.py:168
+msgid "Correspondent"
+msgstr "Korrespondent"
+
+#: models.py:169
+msgid "Correspondents"
+msgstr "Korrespondenten"
+
+#: models.py:175
 msgid "Tag"
 msgstr ""
 
-#: models.py:174
+#: models.py:176
 msgid "Tags"
 msgstr ""
 
-#: models.py:193
+#: models.py:195
 msgid "Color"
 msgstr "Farbe"
 
-#: models.py:231
+#: models.py:233
 msgid ""
 "The raw, text-only data of the document. This field is primarily used for "
 "searching."
@@ -223,7 +281,7 @@ msgstr ""
 "Die reinen Text-Rohdaten des Dokuments. Dieses Feld wird hauptsächlich für "
 "die Suche verwendet."
 
-#: models.py:250
+#: models.py:252
 msgid ""
 "The checksum of the original document (before it was encrypted).  We use "
 "this to prevent duplicate document imports."
@@ -231,39 +289,39 @@ msgstr ""
 "Die Prüfsumme des Originaldokuments (bevor es verschlüsselt wurde). Sie wird "
 "verwendet, um doppelte Dokumentenimporte zu verhindern."
 
-#: models.py:276
+#: models.py:278
 msgid "Current filename in storage"
 msgstr "Aktueller Dateiname im Speicher"
 
-#: models.py:281
+#: models.py:283
 msgid "Document"
 msgstr "Dokument"
 
-#: models.py:578
+#: models.py:580
 msgid "Group"
 msgstr "Gruppe"
 
-#: models.py:579
+#: models.py:581
 msgid "Message"
 msgstr "Nachricht"
 
-#: models.py:581
+#: models.py:583
 msgid "Level"
 msgstr "Ebene"
 
-#: models.py:583
+#: models.py:585
 msgid "Created"
 msgstr "Erzeugt"
 
-#: models.py:584
+#: models.py:586
 msgid "Modified"
 msgstr "Geändert"
 
-#: models.py:590
+#: models.py:592
 msgid "Log"
 msgstr ""
 
-#: models.py:591
+#: models.py:593
 msgid "Logs"
 msgstr ""
 

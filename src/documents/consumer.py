@@ -11,7 +11,7 @@ from operator import itemgetter
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
-from src.paperless.db import GnuPG
+from paperless.db import GnuPG
 
 from .models import Document, FileInfo, Tag
 from .parsers import ParseError

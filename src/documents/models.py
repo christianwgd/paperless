@@ -165,6 +165,8 @@ class Correspondent(MatchingModel):
 
     class Meta:
         ordering = ("name",)
+        verbose_name = _('Correspondent')
+        verbose_name_plural = _('Correspondents')
 
 
 class Tag(MatchingModel):
