@@ -151,6 +151,7 @@ class TagAdmin(CommonAdmin):
         "name", "colour", "match", "matching_algorithm", "document_count")
     list_filter = ("colour", "matching_algorithm")
     list_editable = ("colour", "match", "matching_algorithm")
+    search_fields = ['name']
 
     readonly_fields = ("slug",)
 
@@ -179,10 +180,11 @@ class DocumentAdmin(DjangoQLSearchMixin, CommonAdmin):
     list_display = ("title", "created", "added", "thumbnail", "correspondent",
                     "tags_")
     list_filter = (
-        "tags",
+        #"tags",
         ("correspondent", RecentCorrespondentFilter),
         FinancialYearFilter
     )
+    autocomplete_fields = ['tags']
 
     filter_horizontal = ("tags",)
 
