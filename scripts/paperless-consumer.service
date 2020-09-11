@@ -1,10 +1,16 @@
 [Unit]
 Description=Paperless consumer
+After=network.target
+Wants=network.target
 
 [Service]
-User=paperless
-Group=paperless
-ExecStart=/home/paperless/project/virtualenv/bin/python /home/paperless/project/src/manage.py document_consumer
+PIDFile = /var/www/paperless/run/consumer.pid
+User=cwiegand
+Group=users
+ExecStart=/var/venvs/paperless/bin/python /var/www/paperless/src/manage.py document_consumer --pid=/var/www/paperless/run/consumer.pid
+ExecReload = /bin/kill -s HUP $MAINPID
+ExecStop = /bin/kill -s TERM $MAINPID
+ExecStopPost = /bin/rm /var/www/paperless/run/consumer.pid
 
 [Install]
 WantedBy=multi-user.target

@@ -4,9 +4,13 @@ After=network.target
 Wants=network.target
 
 [Service]
-User=paperless
-Group=paperless
-ExecStart=/home/paperless/project/virtualenv/bin/gunicorn --pythonpath=/home/paperless/project/src paperless.wsgi -w 2
+PIDFile = /var/www/paperless/run/paperless.pid
+User=cwiegand
+Group=users
+ExecStart=/var/venvs/paperless/bin/gunicorn paperless.wsgi -c=/var/www/paperless/config.py -pythonpath=/var/www/paperless/src --pid=/var/www/paperless/run/paperless.pid
+ExecReload = /bin/kill -s HUP $MAINPID
+ExecStop = /bin/kill -s TERM $MAINPID
+ExecStopPost = /bin/rm /var/www/paperless/run/paperless.pid
 
 [Install]
 WantedBy=multi-user.target
