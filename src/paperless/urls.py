@@ -4,6 +4,7 @@ from django.contrib import admin
 from django.urls import reverse_lazy, path, re_path
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import RedirectView
+from django.utils.translation import gettext_lazy as _
 from rest_framework.routers import DefaultRouter
 
 from paperless.views import FaviconView
@@ -63,4 +64,4 @@ admin.site.site_header = 'Paperless'
 # Text at the end of each page's <title>.
 admin.site.site_title = 'Paperless'
 # Text at the top of the admin index page.
-admin.site.index_title = 'Paperless administration'
+admin.site.index_title = _('Paperless administration')
