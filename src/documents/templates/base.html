@@ -3,6 +3,7 @@
 
 {% block bootstrap4_extra_head %}
 {{ block.super }}
+<link rel="shortcut icon" type="image/png" href="{% static 'paperless/img/favicon.ico' %}"/>
 {% endblock %}
 
 {% block bootstrap4_extra_script %}
@@ -13,9 +14,9 @@
 {% block bootstrap4_title %}Paperless{% endblock %}
 
 {% block bootstrap4_content %}
-<nav class="navbar navbar-expand-lg navbar-light bg-ligth">
+<nav class="navbar navbar-expand-lg navbar-dark">
     <a class="navbar-brand" href="{% url 'documents:list' %}">
-				<img src="{% static 'paperless/img/logo-dark.png' %}" alt="Paperless">
+				<img src="{% static 'paperless/img/logo-light.png' %}" alt="Paperless">
 		</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -35,20 +36,20 @@
                     <span class="caret"></span>
                 </a>
                 <div class="dropdown-menu right">
-{#                    <a class="dropdown-item" href="{% url 'logout' %}">#}
-{#                        <i class="far fa-sign-out"></i>#}
-{#                        {% trans 'Log out' %}#}
-{#                    </a>#}
+                    <a class="dropdown-item" href="{% url 'logout' %}">
+                        <i class="far fa-sign-out"></i>
+                        {% trans 'Log out' %}
+                    </a>
 {#                    <a class="dropdown-item" href="{% url 'settings' %}">#}
 {#                        <i class="far fa-cog"></i>#}
 {#                        {% trans 'settings' %}#}
 {#                    </a>#}
-{#                    <a class="dropdown-item" href="{% url 'password_change' %}">#}
-{#                        <i class="far fa-key"></i>#}
-{#                        {% trans 'Password change' %}#}
-{#                    </a>#}
+                    <a class="dropdown-item" href="{% url 'password_change' %}">
+                        <i class="far fa-key"></i>
+                        {% trans 'Password change' %}
+                    </a>
                     {% if user.is_superuser %}
-{#                    <div class="dropdown-divider"></div>#}
+                    <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{% url 'admin:index' %}">
                         {% trans 'Admin' %}
                     </a>

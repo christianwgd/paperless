@@ -2,8 +2,13 @@
 	height: 50px;
 }
 
+.navbar {
+	background-color: #91A9B6;
+}
+
 .title-block {
 	text-align: center;
+	margin-top: 20px;
 }
 
 .tool {

@@ -214,6 +214,8 @@ MEDIA_ROOT = os.getenv(
 STATIC_URL = os.getenv("PAPERLESS_STATIC_URL", "/static/")
 MEDIA_URL = os.getenv("PAPERLESS_MEDIA_URL", "/media/")
 
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/'
 
 # Other
 

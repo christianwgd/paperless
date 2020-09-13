@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-13 17:52+0200\n"
+"POT-Creation-Date: 2020-09-13 21:13+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -298,7 +298,7 @@ msgstr ""
 "Die reinen Text-Rohdaten des Dokuments. Dieses Feld wird hauptsächlich für "
 "die Suche verwendet."
 
-#: models.py:246
+#: models.py:246 templates/documents/document_detail.html:58
 msgid "File type"
 msgstr "Dateityp"
 
@@ -323,11 +323,12 @@ msgstr "Erzeugt"
 msgid "Modified"
 msgstr "Geändert"
 
-#: models.py:277
+#: models.py:277 templates/documents/document_detail.html:62
 msgid "Storage type"
 msgstr "Speichertyp"
 
-#: models.py:282 templates/documents/document_filter.html:82
+#: models.py:282 templates/documents/document_detail.html:54
+#: templates/documents/document_filter.html:82
 msgid "Added"
 msgstr "Hinzugefügt"
 
@@ -362,6 +363,55 @@ msgstr ""
 #: models.py:606
 msgid "Logs"
 msgstr ""
+
+#: templates/accounts/logged_out.html:4
+msgid "Logged out"
+msgstr "Abgemeldet"
+
+#: templates/accounts/logged_out.html:9
+msgid "You are now logged out, thanks for using this app."
+msgstr ""
+"Sie sind jetzt abgemeldet. Vielen Dank, dass Sie diese App "
+"verwendet haben."
+
+#: templates/accounts/logged_out.html:14 templates/accounts/login.html:9
+msgid "Login"
+msgstr "Anmelden"
+
+#: templates/accounts/login.html:16
+#, python-format
+msgid ""
+"You are authenticated as %(username)s, but are not authorized to access this "
+"page. Would you like to login to a different account?"
+msgstr ""
+"Sie sind als %(username)s authentifiziert, aber nicht berechtigt, auf "
+"diese Seite zuzugreifen. Möchten Sie sich bei einem anderen Konto anmelden?"
+
+#: templates/accounts/password_change_done.html:9
+msgid "Your password was changed."
+msgstr "Ihr Passwort wurde geändert."
+
+#: templates/accounts/password_change_form.html:15
+msgid "Please correct the error below."
+msgstr "Bitte korrigieren Sie den Fehler unten."
+
+#: templates/accounts/password_change_form.html:17
+msgid "Please correct the errors below."
+msgstr "Bitte korrigieren Sie die Fehler unten."
+
+#: templates/accounts/password_change_form.html:23
+msgid ""
+"Please enter your old password, for security's sake, and then enter your new "
+"password twice so we can verify you typed it in correctly."
+msgstr ""
+"Bitte geben Sie aus Sicherheitsgründen Ihr altes Passwort ein und dann "
+"zweimal Ihr neues Passwort, damit wir überprüfen können, ob Sie es richtig "
+"eingegeben haben."
+
+#: templates/accounts/password_change_form.html:29
+#: templates/accounts/password_change_form.html:31
+msgid "Change my password"
+msgstr "Passwort ändern"
 
 #: templates/admin/documents/document/change_list_results.html:131
 msgid "Remove from sorting"
@@ -412,11 +462,15 @@ msgstr "Keine verfügbar"
 msgid "Unknown content"
 msgstr "Unbekannter Inhalt"
 
-#: templates/documents/base.html:53
+#: templates/base.html:41
+msgid "Log out"
+msgstr ""
+
+#: templates/base.html:54
 msgid "Admin"
 msgstr "Verwaltung"
 
-#: templates/documents/document_detail.html:61
+#: templates/documents/document_detail.html:73
 msgid "Preview"
 msgstr "Vorschau"
 
