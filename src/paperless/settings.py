@@ -91,7 +91,6 @@ INSTALLED_APPS = [
     "djangoql",
 
     'bootstrap4',
-    'bootstrap_datepicker_plus',
 ]
 
 if os.getenv("PAPERLESS_INSTALLED_APPS"):
