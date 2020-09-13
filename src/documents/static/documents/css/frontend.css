@@ -46,3 +46,7 @@ td.content {
 	max-height: 15rem;
 	overflow: auto;
 }
+
+.preview {
+	width: 80%;
+}
