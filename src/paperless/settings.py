@@ -111,11 +111,12 @@ MIDDLEWARE = [
 # Enable whitenoise compression and caching
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# We allow CORS from localhost:8080
-CORS_ORIGIN_WHITELIST = tuple(os.getenv(
+# We allow CORS from localhost:8000
+CORS_ALLOWED_ORIGINS = tuple(os.getenv(
     "PAPERLESS_CORS_ALLOWED_HOSTS",
-    "http://localhost:8080,https://localhost:8080"
+    "http://localhost:8000,https://localhost:8000"
 ).split(","))
+
 
 # If auth is disabled, we just use our "bypass" authentication middleware
 if bool(os.getenv("PAPERLESS_DISABLE_LOGIN", "false").lower() in ("yes", "y", "1", "t", "true")):
