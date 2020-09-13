@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-10 22:09+0200\n"
+"POT-Creation-Date: 2020-09-13 17:52+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -75,7 +75,7 @@ msgstr "Geschäftsjahr"
 msgid "Correspondent (Recent)"
 msgstr "Korrespondent (Neueste)"
 
-#: apps.py:9 models.py:297
+#: apps.py:9 models.py:297 templates/documents/document_filter.html:53
 msgid "Documents"
 msgstr "Dokumente"
 
@@ -119,7 +119,7 @@ msgid "No parsers could be found, not even the default. This is a problem."
 msgstr ""
 "Es konnten keine Parser gefunden werden, auch nicht der Standard-Parser."
 
-#: filters.py:42
+#: filters.py:43
 msgid "Is tagged"
 msgstr "Markiert"
 
@@ -252,7 +252,8 @@ msgstr "Groß- und Kleinschreibung ignorieren"
 msgid "Unsupported matching algorithm"
 msgstr "Nicht unterstützter Abgleich-Algorithmus"
 
-#: models.py:168 models.py:225
+#: models.py:168 models.py:225 templates/documents/document_detail.html:38
+#: templates/documents/document_filter.html:83
 msgid "Correspondent"
 msgstr "Korrespondent"
 
@@ -264,7 +265,7 @@ msgstr "Korrespondenten"
 msgid "Tag"
 msgstr ""
 
-#: models.py:176 models.py:250
+#: models.py:176 models.py:250 templates/documents/document_detail.html:42
 msgid "Tags"
 msgstr ""
 
@@ -280,11 +281,12 @@ msgstr "Unverschlüsselt"
 msgid "Encrypted with GNU Privacy Guard"
 msgstr "Verschlüsselt mit GNU Privacy Guard"
 
-#: models.py:230
+#: models.py:230 templates/documents/document_detail.html:30
+#: templates/documents/document_filter.html:80
 msgid "Title"
 msgstr "Titel"
 
-#: models.py:235
+#: models.py:235 templates/documents/document_detail.html:34
 msgid "Content"
 msgstr "Inhalt"
 
@@ -312,7 +314,8 @@ msgstr ""
 "Die Prüfsumme des Originaldokuments (bevor es verschlüsselt wurde). Sie wird "
 "verwendet, um doppelte Dokumentenimporte zu verhindern."
 
-#: models.py:265 models.py:598
+#: models.py:265 models.py:598 templates/documents/document_detail.html:50
+#: templates/documents/document_filter.html:81
 msgid "Created"
 msgstr "Erzeugt"
 
@@ -324,7 +327,7 @@ msgstr "Geändert"
 msgid "Storage type"
 msgstr "Speichertyp"
 
-#: models.py:282
+#: models.py:282 templates/documents/document_filter.html:82
 msgid "Added"
 msgstr "Hinzugefügt"
 
@@ -336,7 +339,7 @@ msgstr "Dateiname"
 msgid "Current filename in storage"
 msgstr "Aktueller Dateiname im Speicher"
 
-#: models.py:296
+#: models.py:296 templates/documents/document_detail.html:19
 msgid "Document"
 msgstr "Dokument"
 
@@ -408,3 +411,24 @@ msgstr "Keine verfügbar"
 #: templates/admin/index.html:49
 msgid "Unknown content"
 msgstr "Unbekannter Inhalt"
+
+#: templates/documents/base.html:53
+msgid "Admin"
+msgstr "Verwaltung"
+
+#: templates/documents/document_detail.html:61
+msgid "Preview"
+msgstr "Vorschau"
+
+#: templates/documents/document_filter.html:63
+#: templates/documents/document_filter.html:96
+msgid "Filter"
+msgstr ""
+
+#: templates/documents/document_filter.html:77
+msgid "Order"
+msgstr "Sortierung"
+
+#: templates/documents/document_filter.html:99
+msgid "Remove filter"
+msgstr "Filter zurücksetzen"

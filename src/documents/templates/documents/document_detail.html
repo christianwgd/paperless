@@ -50,12 +50,30 @@
                         <th>{% trans 'Created' %}</th>
                         <td>{{ document.created }}</td>
                     </tr>
+										<tr>
+                        <th>{% trans 'Added' %}</th>
+                        <td>{{ document.added }}</td>
+                    </tr>
+										<tr>
+                        <th>{% trans 'File type' %}</th>
+                        <td>{{ document.file_type }}</td>
+                    </tr>
+										<tr>
+                        <th>{% trans 'Storage type' %}</th>
+                        <td>{{ document.get_storage_type_display }}</td>
+                    </tr>
                 </tbody>
             </table>
 
         </div>
     </div>
 
+		<div class="row">
+				<div class="col-12">
+						<h4>{% trans 'Preview' %}</h4>
+						<object data="/fetch/preview/{{ document.id }}"></object>
+				</div>
+		</div>
 
 </div>
 {% endblock %}
