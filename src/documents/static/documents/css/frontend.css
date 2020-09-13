@@ -24,6 +24,10 @@
     width: 100%;
 }
 
+.card-body {
+	padding: .5rem;
+}
+
 .card {
 	min-width: 300px;
 	margin-bottom: 2rem !important;
@@ -40,6 +44,10 @@
 
 .card-header p {
 	margin-bottom: 5px;
+}
+
+.img-thumbnail {
+	border: none;
 }
 
 .badge {
