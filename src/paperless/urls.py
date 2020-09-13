@@ -36,6 +36,7 @@ urlpatterns = [
             namespace="rest_framework")
     ),
     path("api/", include((router.urls, 'drf'), namespace="drf")),
+    path('documents/', include('documents.urls')),
 
     # File downloads
     re_path(
@@ -54,8 +55,10 @@ urlpatterns = [
     path("admin/", admin.site.urls),
 
     # Redirect / to /admin
+    # re_path(r"^$", RedirectView.as_view(
+    #     permanent=True, url=reverse_lazy("admin:index"))),
     re_path(r"^$", RedirectView.as_view(
-        permanent=True, url=reverse_lazy("admin:index"))),
+        permanent=True, url=reverse_lazy("documents:list"))),
 
 ] + static.static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

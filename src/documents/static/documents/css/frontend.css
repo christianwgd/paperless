@@ -1,0 +1,48 @@
+.navbar-brand img {
+	height: 50px;
+}
+
+.title-block {
+	text-align: center;
+}
+
+.tool {
+    padding: 6px;
+    text-decoration: none;
+}
+.tool:hover {
+    text-decoration: none;
+}
+
+.toolbar {
+    text-align: center;
+    width: 100%;
+}
+
+.card {
+	min-width: 300px;
+	margin-bottom: 2rem !important;
+}
+
+.card-title {
+	margin-bottom: 5px;
+	font-size: 14px;
+}
+
+.card-header {
+	min-height: 7rem;
+}
+
+.card-header p {
+	margin-bottom: 5px;
+}
+
+.badge {
+	color: white;
+}
+
+td.content {
+	display: block;
+	max-height: 15rem;
+	overflow: auto;
+}

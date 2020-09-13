@@ -1,0 +1,142 @@
+{% extends 'documents/base.html' %}
+{% load i18n static bootstrap4 %}
+
+{% block bootstrap4_extra_head %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'documents/css/frontend.css' %}">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css" type="text/css" media="all" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css" type="text/css" media="screen" rel="stylesheet">
+{% endblock %}
+
+{% block bootstrap4_extra_script %}
+{{ block.super }}
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/js/i18n/de.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$('#id_correspondent').select2({ theme: 'bootstrap', width: '100%' });
+	$('#id_tags').select2({ theme: 'bootstrap', width: '100%' });
+	$('#order_by').select2({ theme: 'bootstrap', width: '100%' });
+	var options = {
+		'locale': 'de',
+		'format': 'DD.MM.YYYY'
+	};
+	$('#id_created_0').datetimepicker(options);
+	$('#id_created_1').datetimepicker(options);
+	$('#id_added_0').datetimepicker(options);
+	$('#id_added_1').datetimepicker(options);
+
+	$('#filter').click(function() {
+        $('#filterModal').modal();
+    });
+
+	$('#order_by').val("{{ order }}").trigger('change');
+
+	$('#filterForm').submit(function(){ //listen for submit event
+		var val = $('#order_by').val();
+		$.each(params, function (i, param) {
+			$('<input />').attr('type', 'hidden')
+							.attr('name', 'order_by')
+							.attr('value', val)
+							.appendTo('#filterForm');
+		});
+
+    return true;
+});
+});
+</script>
+{% endblock %}
+
+{% block title %}{% trans 'Documents' %}{% endblock %}
+
+{% block content %}
+<!-- The Modals -->
+<div class="modal fade" id="filterModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+            <h4 class="modal-title">{% trans 'Filter' %}</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+            <form action="" method="get" id="filterForm">
+							  {% csrf_token %}
+							  {% bootstrap_field filter.form.correspondent %}
+							  {% bootstrap_field filter.form.tags %}
+								{% bootstrap_field filter.form.created %}
+								{% bootstrap_field filter.form.added %}
+								<hr/>
+								<div class="form-group">
+										<label for="cars">{% trans 'Order' %}</label>
+										<select name="order_by" id="order_by">
+											<option value="default">-----</option>
+											<option value="title">{% trans 'Title' %}</option>
+											<option value="created">{% trans 'Created' %}</option>
+											<option value="added">{% trans 'Added' %}</option>
+											<option value="correspondent">{% trans 'Correspondent' %} </option>
+										</select>
+								</div>
+								{% bootstrap_button "<i class='far fa-filter'></i>" button_type="submit" button_class="btn-primary" %}
+            </form>
+        </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12" id="toolbar">
+					<button class="btn btn-sm btn-secondary" id="filter" title="{% trans 'Filter' %}">
+							<i class="far fa-filter"></i>
+					</button>
+					<a href="{% url 'documents:list' %}" class="btn btn-sm btn-secondary" title="{% trans 'Remove filter' %}">
+                <i class="far fa-times"></i>
+            </a>
+    </div>
+</div>
+<hr/>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+
+            <div class="row popup-gallery justify-content-center">
+                <div class="card-deck">
+                    {% for doc in filter.qs %}
+                    <div class="card text-center" id="{{ event.id }}">
+                        <div class="card-header">
+                            <h6 class="card-title">
+                                {{ doc.title }}
+                                <span class="badge badge-secondary">{{ visibles.count }}</span>
+                            </h6>
+														<p class="small">{{ doc.correspondent|default_if_none:"-" }} / {{ doc.created|date:"SHORT_DATETIME_FORMAT" }}</p>
+														<div class="tags">
+															{% for tag in doc.tags.all %}
+																<span class="badge" style="background-color: {{ tag.get_colour_display }};">{{ tag }}</span>
+															{% endfor %}
+														</div>
+                        </div>
+                        <div class="card-body">
+														<a href="{% url 'documents:detail' doc.id %}">
+                            	  <img class="img-thumbnail" src="/fetch/thumb/{{ doc.id }}" alt="{{ doc.name }}">
+														</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+{% endblock %}

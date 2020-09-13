@@ -1,0 +1,75 @@
+{% extends 'bootstrap4/bootstrap4.html' %}
+{% load i18n bootstrap4 static %}
+
+{% block bootstrap4_extra_head %}
+{{ block.super }}
+{% endblock %}
+
+{% block bootstrap4_extra_script %}
+{{ block.super }}
+<script src="https://kit.fontawesome.com/d29690e050.js" crossorigin="anonymous"></script>
+{% endblock %}
+
+{% block bootstrap4_title %}Paperless{% endblock %}
+
+{% block bootstrap4_content %}
+<nav class="navbar navbar-expand-lg navbar-light bg-ligth">
+    <a class="navbar-brand" href="{% url 'documents:list' %}">
+				<img src="{% static 'paperless/img/logo-dark.png' %}" alt="Paperless">
+		</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="userDropdown" data-toggle="dropdown" href="">
+                    <i class="far fa-user"></i>
+                    {% if user.get_full_name %}
+                    <span>{{ user.get_full_name }}</span>
+                    {% else %}
+                    <span>{{ user.username }}</span>
+                    {% endif %}
+                    <span class="caret"></span>
+                </a>
+                <div class="dropdown-menu right">
+{#                    <a class="dropdown-item" href="{% url 'logout' %}">#}
+{#                        <i class="far fa-sign-out"></i>#}
+{#                        {% trans 'Log out' %}#}
+{#                    </a>#}
+{#                    <a class="dropdown-item" href="{% url 'settings' %}">#}
+{#                        <i class="far fa-cog"></i>#}
+{#                        {% trans 'settings' %}#}
+{#                    </a>#}
+{#                    <a class="dropdown-item" href="{% url 'password_change' %}">#}
+{#                        <i class="far fa-key"></i>#}
+{#                        {% trans 'Password change' %}#}
+{#                    </a>#}
+                    {% if user.is_superuser %}
+{#                    <div class="dropdown-divider"></div>#}
+                    <a class="dropdown-item" href="{% url 'admin:index' %}">
+                        {% trans 'Admin' %}
+                    </a>
+                    {% endif %}
+                </div>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+<div id="container" class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="title-block">{% block title %}{% endblock %}</h3>
+            {% block title_sep %}<hr class="title-hr"/>{% endblock %}
+
+            {% bootstrap_messages %}
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

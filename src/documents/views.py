@@ -1,8 +1,10 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse, HttpResponseBadRequest
-from django.views.generic import DetailView, FormView, TemplateView
+from django.views.generic import DetailView, FormView, TemplateView, ListView
 from django_filters.rest_framework import DjangoFilterBackend
 from django.conf import settings
 from django.utils import cache
+from django_filters.views import FilterView
 
 from paperless.db import GnuPG
 from paperless.mixins import SessionOrBasicAuthMixin
@@ -21,7 +23,8 @@ from rest_framework.viewsets import (
     ReadOnlyModelViewSet
 )
 
-from .filters import CorrespondentFilterSet, DocumentFilterSet, TagFilterSet
+from .filters import CorrespondentFilterSet, DocumentFilterSet, TagFilterSet, \
+    DocumentFilter
 from .forms import UploadForm
 from .models import Correspondent, Document, Log, Tag
 from .serialisers import (
@@ -147,3 +150,26 @@ class LogViewSet(ReadOnlyModelViewSet):
     permission_classes = (IsAuthenticated,)
     filter_backends = (DjangoFilterBackend, OrderingFilter)
     ordering_fields = ("time",)
+
+
+# Frontend views
+class DocumentFilterView(LoginRequiredMixin, FilterView):
+    model = Document
+    filterset_class = DocumentFilter
+
+    def get_queryset(self):
+        order = self.request.GET.get('order_by', 'default')
+        self.request.session['order'] = order
+        if order == 'default':
+            return super(DocumentFilterView, self).get_queryset()
+        return Document.objects.order_by(order)
+
+    def get_context_data(self, **kwargs):
+        context = super(DocumentFilterView, self).get_context_data(**kwargs)
+        context['order'] = self.request.session.get('order', 'default')
+        return context
+
+
+class DocumentDetailView(LoginRequiredMixin, DetailView):
+    model = Document
+

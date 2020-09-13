@@ -90,6 +90,8 @@ INSTALLED_APPS = [
     "django_filters",
     "djangoql",
 
+    'bootstrap4',
+    'bootstrap_datepicker_plus',
 ]
 
 if os.getenv("PAPERLESS_INSTALLED_APPS"):
@@ -214,6 +216,11 @@ MEDIA_URL = os.getenv("PAPERLESS_MEDIA_URL", "/media/")
 
 
 # Other
+
+# Settings for django-bootstrap4
+BOOTSTRAP4 = {
+    "include_jquery": True,
+}
 
 # Disable Django's artificial limit on the number of form fields to submit at
 # once.  This is a protection against overloading the server, but since this is

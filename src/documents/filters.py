@@ -1,3 +1,4 @@
+import django_filters
 from django_filters.rest_framework import BooleanFilter, FilterSet
 from django.utils.translation import gettext_lazy as _
 
@@ -59,3 +60,20 @@ class DocumentFilterSet(FilterSet):
             "tags__slug": CHAR_KWARGS,
 
         }
+
+
+class DocumentFilter(django_filters.FilterSet):
+    class Meta:
+        model = Document
+        fields = [
+            'correspondent', 'tags', 'created', 'added',
+        ]
+
+    correspondent = django_filters.ModelChoiceFilter(
+        queryset=Correspondent.objects.all(),
+    )
+    tags = django_filters.ModelMultipleChoiceFilter(
+        queryset=Tag.objects.all(),
+    )
+    created = django_filters.DateFromToRangeFilter()
+    added = django_filters.DateFromToRangeFilter()
