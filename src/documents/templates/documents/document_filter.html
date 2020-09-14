@@ -5,7 +5,6 @@
 {{ block.super }}
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css" type="text/css" media="all" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css" type="text/css" media="screen" rel="stylesheet">
 {% endblock %}
 
 {% block bootstrap4_extra_script %}
@@ -16,9 +15,8 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-	$('#id_correspondent').select2({ theme: 'bootstrap', width: '100%' });
-	$('#id_tags').select2({ theme: 'bootstrap', width: '100%' });
-	$('#order_by').select2({ theme: 'bootstrap', width: '100%' });
+	$('#id_correspondent').select2({ width: '100%' });
+	$('#id_tags').select2({ width: '100%' });
 	var options = {
 		'locale': 'de',
 		'format': 'DD.MM.YYYY'
