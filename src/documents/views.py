@@ -1,10 +1,11 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse, HttpResponseBadRequest
-from django.views.generic import DetailView, FormView, TemplateView, ListView
+from django.views.generic import DetailView, FormView, TemplateView
 from django_filters.rest_framework import DjangoFilterBackend
 from django.conf import settings
 from django.utils import cache
 from django_filters.views import FilterView
+from django.utils.translation import gettext_lazy as _
 
 from paperless.db import GnuPG
 from paperless.mixins import SessionOrBasicAuthMixin
@@ -22,6 +23,7 @@ from rest_framework.viewsets import (
     ModelViewSet,
     ReadOnlyModelViewSet
 )
+from sortable_listview import SortableListView
 
 from .filters import CorrespondentFilterSet, DocumentFilterSet, TagFilterSet, \
     DocumentFilter
@@ -153,21 +155,25 @@ class LogViewSet(ReadOnlyModelViewSet):
 
 
 # Frontend views
-class DocumentFilterView(LoginRequiredMixin, FilterView):
+class DocumentFilterView(LoginRequiredMixin, FilterView, SortableListView):
     model = Document
+    paginate_by = 10
     filterset_class = DocumentFilter
-
-    def get_queryset(self):
-        order = self.request.GET.get('order_by', 'default')
-        self.request.session['order'] = order
-        if order == 'default':
-            return super(DocumentFilterView, self).get_queryset()
-        return Document.objects.order_by(order)
-
-    def get_context_data(self, **kwargs):
-        context = super(DocumentFilterView, self).get_context_data(**kwargs)
-        context['order'] = self.request.session.get('order', 'default')
-        return context
+    allowed_sort_fields = {
+        'title': {
+            'default_direction': '',
+            'verbose_name': _('Title')
+        },
+        'created': {
+            'default_direction': '',
+            'verbose_name': _('Created')
+        },
+        'added': {
+            'default_direction': '',
+            'verbose_name': _('Added')
+        },
+    }
+    default_sort_field = 'title'
 
 
 class DocumentDetailView(LoginRequiredMixin, DetailView):

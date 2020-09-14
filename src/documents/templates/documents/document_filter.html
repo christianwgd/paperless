@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load i18n static bootstrap4 %}
+{% load i18n static bootstrap4 hacks bootstrap_pagination %}
 
 {% block bootstrap4_extra_head %}
 {{ block.super }}
@@ -30,27 +30,17 @@ $(document).ready(function() {
 	$('#id_added_1').datetimepicker(options);
 
 	$('#filter').click(function() {
-        $('#filterModal').modal();
-    });
+      $('#filterModal').modal();
+	});
 
-	$('#order_by').val("{{ order }}").trigger('change');
-
-	$('#filterForm').submit(function(){ //listen for submit event
-		var val = $('#order_by').val();
-		$.each(params, function (i, param) {
-			$('<input />').attr('type', 'hidden')
-							.attr('name', 'order_by')
-							.attr('value', val)
-							.appendTo('#filterForm');
-		});
-
-    return true;
-});
 });
 </script>
 {% endblock %}
 
-{% block title %}{% trans 'Documents' %}{% endblock %}
+{% block title %}
+		{% trans 'Documents' %}
+		<span class="badge badge-secondary">{{ page_obj.paginator.count }}</span>
+{% endblock %}
 
 {% block content %}
 <!-- The Modals -->
@@ -72,17 +62,6 @@ $(document).ready(function() {
 							  {% bootstrap_field filter.form.tags %}
 								{% bootstrap_field filter.form.created %}
 								{% bootstrap_field filter.form.added %}
-								<hr/>
-								<div class="form-group">
-										<label for="cars">{% trans 'Order' %}</label>
-										<select name="order_by" id="order_by">
-											<option value="default">-----</option>
-											<option value="title">{% trans 'Title' %}</option>
-											<option value="created">{% trans 'Created' %}</option>
-											<option value="added">{% trans 'Added' %}</option>
-											<option value="correspondent">{% trans 'Correspondent' %} </option>
-										</select>
-								</div>
 								{% bootstrap_button "<i class='far fa-filter'></i>" button_type="submit" button_class="btn-primary" %}
             </form>
         </div>
@@ -93,12 +72,26 @@ $(document).ready(function() {
 
 <div class="row">
     <div class="col-12" id="toolbar">
-					<button class="btn btn-sm btn-secondary" id="filter" title="{% trans 'Filter' %}">
-							<i class="far fa-filter"></i>
-					</button>
-					<a href="{% url 'documents:list' %}" class="btn btn-sm btn-secondary" title="{% trans 'Remove filter' %}">
-                <i class="far fa-times"></i>
-            </a>
+				<span class="filter-label">{% trans 'Filter' %}: </span>
+				<button class="btn btn-sm btn-secondary" id="filter" title="{% trans 'Filter' %}">
+						<i class="far fa-filter"></i>
+				</button>
+				<a href="{% url 'documents:list' %}" class="btn btn-sm btn-secondary" title="{% trans 'Remove filter' %}">
+						<i class="far fa-times"></i>
+				</a>
+				<span class="sortable-label">{% trans 'Order' %}: </span>
+				{% for sort_link in sort_link_list %}
+					<span class="sort-link {{ sort_link.attrs }}">
+							{% get_sort_link_params sort_link.attrs sort_link.indicator as sort_param %}
+							<a class="btn btn-secondary btn-small btn-sm" href="?{% param_replace sort=sort_param %}">
+								<span class="{{ sort_link.indicator }}">
+										{{ sort_link.title }}
+										{% if sort_link.indicator == 'sort-asc' %}▲{% endif %}
+										{% if sort_link.indicator == 'sort-desc' %}▼{% endif %}
+								</span>
+							</a>
+				</span>
+				{% endfor %}
     </div>
 </div>
 <hr/>
@@ -110,7 +103,7 @@ $(document).ready(function() {
 
             <div class="row popup-gallery justify-content-center">
                 <div class="card-deck">
-                    {% for doc in filter.qs %}
+                    {% for doc in page_obj %}
                     <div class="card text-center" id="{{ event.id }}">
                         <div class="card-header">
                             <h6 class="card-title">
@@ -137,6 +130,13 @@ $(document).ready(function() {
         </div>
     </div>
 
+		<div class="row">
+        <div class="col-12">
+						{% if is_paginated %}
+						{% bootstrap_paginate page_obj range=10 size="small" previous_label='<i class="far fa-arrow-alt-left"></i>' next_label='<i class="far fa-arrow-alt-right"></i>' extra_pagination_classes="justify-content-center" %}
+						{% endif %}
+				</div>
+		</div>
 
 </div>
 {% endblock %}

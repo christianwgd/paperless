@@ -63,3 +63,21 @@ td.content {
 .preview {
 	width: 80%;
 }
+
+.sortable-label {
+	margin-left: 1rem;
+}
+
+.page-item .page-link {
+	color: #6C757D;
+}
+
+.page-item.disabled .page-link {
+	color: #bbbbbb;
+}
+
+.page-item.active .page-link {
+	background-color: #6C757D;
+	color: white;
+	border-color: #6C757D;
+}

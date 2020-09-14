@@ -88,9 +88,11 @@ INSTALLED_APPS = [
     "rest_framework",
     "crispy_forms",
     "django_filters",
+    'sortable_listview',
     "djangoql",
 
     'bootstrap4',
+    'bootstrap_pagination',
 ]
 
 if os.getenv("PAPERLESS_INSTALLED_APPS"):

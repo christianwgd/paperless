@@ -7,14 +7,16 @@ babel==2.8.0
 brotli==1.0.9
 certifi==2020.6.20
 chardet==3.0.4
-coverage==5.2.1
+coverage==5.3
 coveralls==2.1.2
 dateparser==0.7.6
 django-bootstrap4==2.2.0
+django-bootstrap-pagination==1.7.1
 django-cors-headers==3.5.0
 django-crispy-forms==1.9.2
 django-extensions==3.0.8
 django-filter==2.3.0
+django-sortable-listview==0.43
 django==3.1.1
 djangoql==0.14.0
 djangorestframework==3.11.1
