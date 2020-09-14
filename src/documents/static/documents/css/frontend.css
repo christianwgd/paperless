@@ -19,9 +19,14 @@
     text-decoration: none;
 }
 
+.toolbar-container {
+	border-top: 1px solid lightgrey;
+	border-bottom: 1px solid lightgrey;
+	margin-bottom: 10px;
+}
+
 .toolbar {
-    text-align: center;
-    width: 100%;
+	padding-top: 15px;
 }
 
 .card-body {

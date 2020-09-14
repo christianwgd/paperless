@@ -157,7 +157,7 @@ class LogViewSet(ReadOnlyModelViewSet):
 # Frontend views
 class DocumentFilterView(LoginRequiredMixin, FilterView, SortableListView):
     model = Document
-    paginate_by = 10
+    paginate_by = 8
     filterset_class = DocumentFilter
     allowed_sort_fields = {
         'title': {
@@ -174,6 +174,15 @@ class DocumentFilterView(LoginRequiredMixin, FilterView, SortableListView):
         },
     }
     default_sort_field = 'title'
+
+    def get_paginate_by(self, queryset):
+        """
+        Paginate by specified value in querystring, or use default class property value.
+        """
+        paginate_by = self.request.user.usersettings.paginate_by
+        if paginate_by == 0:
+            return 1
+        return paginate_by
 
 
 class DocumentDetailView(LoginRequiredMixin, DetailView):

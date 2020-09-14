@@ -4,6 +4,7 @@
 {% block bootstrap4_extra_head %}
 {{ block.super }}
 <link rel="shortcut icon" type="image/png" href="{% static 'paperless/img/favicon.ico' %}"/>
+<link rel="stylesheet" href="{% static 'documents/css/frontend.css' %}">
 {% endblock %}
 
 {% block bootstrap4_extra_script %}
@@ -40,10 +41,10 @@
                         <i class="far fa-sign-out"></i>
                         {% trans 'Log out' %}
                     </a>
-{#                    <a class="dropdown-item" href="{% url 'settings' %}">#}
-{#                        <i class="far fa-cog"></i>#}
-{#                        {% trans 'settings' %}#}
-{#                    </a>#}
+                    <a class="dropdown-item" href="{% url 'settings:edit' %}">
+                        <i class="far fa-cog"></i>
+                        {% trans 'settings' %}
+                    </a>
                     <a class="dropdown-item" href="{% url 'password_change' %}">
                         <i class="far fa-key"></i>
                         {% trans 'Password change' %}
@@ -65,7 +66,6 @@
     <div class="row">
         <div class="col-md-12">
             <h3 class="title-block">{% block title %}{% endblock %}</h3>
-            {% block title_sep %}<hr class="title-hr"/>{% endblock %}
 
             {% bootstrap_messages %}
             {% block content %}{% endblock %}

@@ -52,6 +52,8 @@ urlpatterns = [
     re_path(r"^$", RedirectView.as_view(
         permanent=True, url=reverse_lazy("documents:list"))),
 
+    path('settings/', include('usersettings.urls')),
+
     # API
     path(
         "api/auth/",

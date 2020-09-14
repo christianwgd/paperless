@@ -82,6 +82,7 @@ INSTALLED_APPS = [
     "reminders.apps.RemindersConfig",
     "paperless_tesseract.apps.PaperlessTesseractConfig",
     "paperless_text.apps.PaperlessTextConfig",
+    "usersettings.apps.UserSettingsConfig",
 
     "django.contrib.admin",
 
