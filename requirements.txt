@@ -16,6 +16,7 @@ django-cors-headers==3.5.0
 django-crispy-forms==1.9.2
 django-extensions==3.0.8
 django-filter==2.3.0
+django-messages-to-bootstrap-notify==0.2.6
 django-sortable-listview==0.43
 django==3.1.1
 djangoql==0.14.0
