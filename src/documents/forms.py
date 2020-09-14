@@ -107,7 +107,7 @@ class DocumentUpdateForm(forms.ModelForm):
 
     class Meta:
         model = Document
-        fields = ['correspondent', 'tags']
+        fields = ['title', 'correspondent', 'tags']
         widgets = {
             'correspondent': BootstrapSelect2Widget,
             'tags': BootstrapSelect2MultipleWidget,
