@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-13 21:13+0200\n"
+"POT-Creation-Date: 2020-09-14 20:31+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -75,7 +75,7 @@ msgstr "Geschäftsjahr"
 msgid "Correspondent (Recent)"
 msgstr "Korrespondent (Neueste)"
 
-#: apps.py:9 models.py:297 templates/documents/document_filter.html:53
+#: apps.py:9 models.py:297 templates/documents/document_filter.html:38
 msgid "Documents"
 msgstr "Dokumente"
 
@@ -123,15 +123,15 @@ msgstr ""
 msgid "Is tagged"
 msgstr "Markiert"
 
-#: forms.py:52
+#: forms.py:54
 msgid "That correspondent name is suspicious."
 msgstr "Dieser Name des Korrespondenten sieht verdächtig aus."
 
-#: forms.py:64
+#: forms.py:66
 msgid "That title is suspicious."
 msgstr "Dieser Titel sieht verdächtig aus."
 
-#: forms.py:76
+#: forms.py:78
 msgid "The file type is invalid."
 msgstr "Der Dateityp ist ungültig."
 
@@ -252,8 +252,7 @@ msgstr "Groß- und Kleinschreibung ignorieren"
 msgid "Unsupported matching algorithm"
 msgstr "Nicht unterstützter Abgleich-Algorithmus"
 
-#: models.py:168 models.py:225 templates/documents/document_detail.html:38
-#: templates/documents/document_filter.html:83
+#: models.py:168 models.py:225 templates/documents/document_detail.html:23
 msgid "Correspondent"
 msgstr "Korrespondent"
 
@@ -265,7 +264,7 @@ msgstr "Korrespondenten"
 msgid "Tag"
 msgstr ""
 
-#: models.py:176 models.py:250 templates/documents/document_detail.html:42
+#: models.py:176 models.py:250 templates/documents/document_detail.html:27
 msgid "Tags"
 msgstr ""
 
@@ -281,12 +280,11 @@ msgstr "Unverschlüsselt"
 msgid "Encrypted with GNU Privacy Guard"
 msgstr "Verschlüsselt mit GNU Privacy Guard"
 
-#: models.py:230 templates/documents/document_detail.html:30
-#: templates/documents/document_filter.html:80
+#: models.py:230 templates/documents/document_detail.html:15 views.py:167
 msgid "Title"
 msgstr "Titel"
 
-#: models.py:235 templates/documents/document_detail.html:34
+#: models.py:235 templates/documents/document_detail.html:19
 msgid "Content"
 msgstr "Inhalt"
 
@@ -298,7 +296,7 @@ msgstr ""
 "Die reinen Text-Rohdaten des Dokuments. Dieses Feld wird hauptsächlich für "
 "die Suche verwendet."
 
-#: models.py:246 templates/documents/document_detail.html:58
+#: models.py:246 templates/documents/document_detail.html:43
 msgid "File type"
 msgstr "Dateityp"
 
@@ -314,8 +312,8 @@ msgstr ""
 "Die Prüfsumme des Originaldokuments (bevor es verschlüsselt wurde). Sie wird "
 "verwendet, um doppelte Dokumentenimporte zu verhindern."
 
-#: models.py:265 models.py:598 templates/documents/document_detail.html:50
-#: templates/documents/document_filter.html:81
+#: models.py:265 models.py:598 templates/documents/document_detail.html:35
+#: views.py:171
 msgid "Created"
 msgstr "Erzeugt"
 
@@ -323,12 +321,11 @@ msgstr "Erzeugt"
 msgid "Modified"
 msgstr "Geändert"
 
-#: models.py:277 templates/documents/document_detail.html:62
+#: models.py:277 templates/documents/document_detail.html:47
 msgid "Storage type"
 msgstr "Speichertyp"
 
-#: models.py:282 templates/documents/document_detail.html:54
-#: templates/documents/document_filter.html:82
+#: models.py:282 templates/documents/document_detail.html:39 views.py:175
 msgid "Added"
 msgstr "Hinzugefügt"
 
@@ -340,7 +337,8 @@ msgstr "Dateiname"
 msgid "Current filename in storage"
 msgstr "Aktueller Dateiname im Speicher"
 
-#: models.py:296 templates/documents/document_detail.html:19
+#: models.py:296 templates/documents/document_detail.html:4
+#: templates/documents/document_form.html:14
 msgid "Document"
 msgstr "Dokument"
 
@@ -371,8 +369,7 @@ msgstr "Abgemeldet"
 #: templates/accounts/logged_out.html:9
 msgid "You are now logged out, thanks for using this app."
 msgstr ""
-"Sie sind jetzt abgemeldet. Vielen Dank, dass Sie diese App "
-"verwendet haben."
+"Sie sind jetzt abgemeldet. Vielen Dank, dass Sie diese App verwendet haben."
 
 #: templates/accounts/logged_out.html:14 templates/accounts/login.html:9
 msgid "Login"
@@ -384,8 +381,8 @@ msgid ""
 "You are authenticated as %(username)s, but are not authorized to access this "
 "page. Would you like to login to a different account?"
 msgstr ""
-"Sie sind als %(username)s authentifiziert, aber nicht berechtigt, auf "
-"diese Seite zuzugreifen. Möchten Sie sich bei einem anderen Konto anmelden?"
+"Sie sind als %(username)s authentifiziert, aber nicht berechtigt, auf diese "
+"Seite zuzugreifen. Möchten Sie sich bei einem anderen Konto anmelden?"
 
 #: templates/accounts/password_change_done.html:9
 msgid "Your password was changed."
@@ -462,27 +459,47 @@ msgstr "Keine verfügbar"
 msgid "Unknown content"
 msgstr "Unbekannter Inhalt"
 
-#: templates/base.html:41
+#: templates/base.html:53
 msgid "Log out"
 msgstr ""
 
-#: templates/base.html:54
+#: templates/base.html:57
+msgid "settings"
+msgstr ""
+
+#: templates/base.html:61
+#, fuzzy
+#| msgid "Your password was changed."
+msgid "Password change"
+msgstr "Ihr Passwort wurde geändert."
+
+#: templates/base.html:66
 msgid "Admin"
 msgstr "Verwaltung"
 
-#: templates/documents/document_detail.html:73
+#: templates/documents/document_detail.html:56
+msgid "edit metadata"
+msgstr "Metadaten bearbeiten"
+
+#: templates/documents/document_detail.html:64
+#: templates/documents/document_form.html:39
 msgid "Preview"
 msgstr "Vorschau"
 
-#: templates/documents/document_filter.html:63
-#: templates/documents/document_filter.html:96
+#: templates/documents/document_filter.html:50
+#: templates/documents/document_filter.html:72
+#: templates/documents/document_filter.html:73
 msgid "Filter"
 msgstr ""
 
-#: templates/documents/document_filter.html:77
+#: templates/documents/document_filter.html:76
+msgid "Remove filter"
+msgstr "Filter zurücksetzen"
+
+#: templates/documents/document_filter.html:79
 msgid "Order"
 msgstr "Sortierung"
 
-#: templates/documents/document_filter.html:99
-msgid "Remove filter"
-msgstr "Filter zurücksetzen"
+#: views.py:197
+msgid "Document metadata changed."
+msgstr "Metadaten des Dokuments geändert."

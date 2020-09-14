@@ -1,6 +1,8 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
 from django.http import HttpResponse, HttpResponseBadRequest
-from django.views.generic import DetailView, FormView, TemplateView
+from django.urls import reverse
+from django.views.generic import DetailView, FormView, TemplateView, UpdateView
 from django_filters.rest_framework import DjangoFilterBackend
 from django.conf import settings
 from django.utils import cache
@@ -27,7 +29,7 @@ from sortable_listview import SortableListView
 
 from .filters import CorrespondentFilterSet, DocumentFilterSet, TagFilterSet, \
     DocumentFilter
-from .forms import UploadForm
+from .forms import UploadForm, DocumentUpdateForm
 from .models import Correspondent, Document, Log, Tag
 from .serialisers import (
     CorrespondentSerializer,
@@ -188,3 +190,11 @@ class DocumentFilterView(LoginRequiredMixin, FilterView, SortableListView):
 class DocumentDetailView(LoginRequiredMixin, DetailView):
     model = Document
 
+
+class DocumentUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    model = Document
+    form_class = DocumentUpdateForm
+    success_message = _('Document metadata changed.')
+
+    def get_success_url(self):
+        return reverse('documents:detail', kwargs={'pk': self.object.id})

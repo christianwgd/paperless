@@ -7,4 +7,5 @@ app_name = 'documents'
 urlpatterns = [
     path('list/', views.DocumentFilterView.as_view(), name='list'),
     path('detail/<int:pk>/', views.DocumentDetailView.as_view(), name='detail'),
+    path('update/<int:pk>/', views.DocumentUpdateView.as_view(), name='update'),
 ]

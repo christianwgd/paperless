@@ -89,6 +89,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "crispy_forms",
     "django_filters",
+    'django_select2',
     'sortable_listview',
     "djangoql",
 

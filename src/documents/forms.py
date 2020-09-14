@@ -8,6 +8,8 @@ from django import forms
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 
+from .bootstrap_select2 import BootstrapSelect2Widget, \
+    BootstrapSelect2MultipleWidget
 from .models import Document, Correspondent
 
 
@@ -99,3 +101,14 @@ class UploadForm(forms.Form):
         with open(file_name, "wb") as f:
             f.write(document)
             os.utime(file_name, times=(t, t))
+
+
+class DocumentUpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = Document
+        fields = ['correspondent', 'tags']
+        widgets = {
+            'correspondent': BootstrapSelect2Widget,
+            'tags': BootstrapSelect2MultipleWidget,
+        }

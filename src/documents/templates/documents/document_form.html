@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load i18n static bootstrap4 %}
+
+{% block bootstrap4_extra_head %}
+{{ block.super }}
+{{ form.media.css }}
+{% endblock %}
+
+{% block bootstrap4_extra_script %}
+{{ block.super }}
+{{ form.media.js }}
+{% endblock %}
+
+{% block title %}{% trans 'Document' %} {{ document.title }}{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+						<form method="post" class="from-horizontal" role="form" action="">
+								{% csrf_token %}
+								{% bootstrap_form form %}
+
+								{% buttons %}
+								<button class="btn btn-primary" name="submit" type="submit" formnovalidate>
+										<i class="fal fa-check"></i>
+								</button>
+								<button class="btn btn-secondary" type="submit" name="cancel" formnovalidate>
+										<i class="fal fa-times"></i>
+								</button>
+								{% endbuttons %}
+						</form>
+        </div>
+    </div>
+
+		<div class="row">
+				<div class="col-12">
+						<h4 class="text-center">{% trans 'Preview' %}</h4>
+						<img class="preview mx-auto d-block" src="/fetch/preview/{{ document.id }}" alt="{{ document.name }}">
+				</div>
+		</div>
+
+</div>
+{% endblock %}
