@@ -1,5 +1,5 @@
 {% extends 'bootstrap4/bootstrap4.html' %}
-{% load i18n bootstrap4 static %}
+{% load i18n bootstrap4 static dm2bn_tags %}
 
 {% block bootstrap4_extra_head %}
 {{ block.super }}
@@ -10,6 +10,17 @@
 {% block bootstrap4_extra_script %}
 {{ block.super }}
 <script src="https://kit.fontawesome.com/d29690e050.js" crossorigin="anonymous"></script>
+{% dm2bn_settings %}
+<script type="text/javascript" src="/static/dm2bn/vendor/bootstrap-notify/bootstrap-notify.min.js"></script>
+<script type="text/javascript" src="/static/dm2bn/vendor/striptags/striptags.js"></script>
+<script type="text/javascript" src="/static/dm2bn/vendor/underscore/underscore-min.js"></script>
+	<script type="text/javascript" src="/static/dm2bn/vendor/bootstrap-notify-simple-wrapper/bootstrap-notify-simple-wrapper.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        // show messages
+        $.showMessages({{ messages|messages2json }});
+    });
+</script>
 {% endblock %}
 
 {% block bootstrap4_title %}Paperless{% endblock %}
@@ -67,7 +78,6 @@
         <div class="col-md-12">
             <h3 class="title-block">{% block title %}{% endblock %}</h3>
 
-            {% bootstrap_messages %}
             {% block content %}{% endblock %}
         </div>
     </div>

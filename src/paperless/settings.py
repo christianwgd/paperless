@@ -94,6 +94,8 @@ INSTALLED_APPS = [
 
     'bootstrap4',
     'bootstrap_pagination',
+
+    "dm2bn",
 ]
 
 if os.getenv("PAPERLESS_INSTALLED_APPS"):

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import HttpResponseRedirect, render
+from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.utils.translation import gettext as _
 
@@ -18,11 +18,9 @@ def settings(request):
         user_settings = UserSettings(user=request.user)
 
     if request.method == 'POST':
-        referer = request.session['referer']
-
         if 'cancel' in request.POST:
             messages.info(request, _('edit cancelled'))
-            return HttpResponseRedirect(referer)
+            return redirect(reverse('documents:list'))
 
         settings_form = UserSettingsForm(
             request.POST, instance=user_settings)
@@ -38,15 +36,11 @@ def settings(request):
                         user=request.user
                     )
                 )
-                return HttpResponseRedirect(referer)
+                return redirect(reverse('documents:list'))
             except Exception as e:
                 messages.error(
                     request, _('error saving settings: {}'.format(e)))
     else:  # GET
-        if 'HTTP_REFERER' in request.META:
-            request.session['referer'] = request.META['HTTP_REFERER']
-        else:
-            request.session['referer'] = reverse('photolist')
         settings_form = UserSettingsForm(instance=user_settings)
 
     return render(request, 'usersettings/user_settings.html', {
