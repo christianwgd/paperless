@@ -78,7 +78,6 @@ urlpatterns = [
 
 ]
 if settings.DEBUG:
-    print(settings.DEBUG)
     urlpatterns += static.static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # Text in each page's <h1> (and above login form).
