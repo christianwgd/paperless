@@ -14,6 +14,7 @@ import json
 import os
 import re
 
+from django.urls import reverse_lazy
 from dotenv import load_dotenv
 
 
@@ -93,6 +94,11 @@ INSTALLED_APPS = [
     'sortable_listview',
     "djangoql",
 
+    'django_otp',
+    'django_otp.plugins.otp_static',
+    'django_otp.plugins.otp_totp',
+    'two_factor',
+
     'bootstrap4',
     'bootstrap_pagination',
 
@@ -110,6 +116,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django_otp.middleware.OTPMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -220,8 +227,10 @@ MEDIA_ROOT = os.getenv(
 STATIC_URL = os.getenv("PAPERLESS_STATIC_URL", "/static/")
 MEDIA_URL = os.getenv("PAPERLESS_MEDIA_URL", "/media/")
 
-LOGIN_URL = '/login/'
+# LOGIN_URL = '/login/'
+LOGIN_URL = reverse_lazy('two_factor:login')
 LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 # Other
 

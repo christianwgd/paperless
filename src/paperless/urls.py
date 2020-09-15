@@ -7,6 +7,7 @@ from django.views.generic import RedirectView
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import views as auth_views
 from rest_framework.routers import DefaultRouter
+from two_factor.urls import urlpatterns as tf_urls
 
 from paperless.views import FaviconView
 from documents.views import (
@@ -28,15 +29,13 @@ router.register(r"reminders", ReminderViewSet)
 router.register(r"tags", TagViewSet)
 
 urlpatterns = [
+    path('', include(tf_urls)),
 
     # The Django admin
     path("admin/", admin.site.urls),
 
-    path('login/', auth_views.LoginView.as_view(
-      template_name='accounts/login.html'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(
-      template_name='accounts/logged_out.html'),
-       name='logout'),
+    path('accounts/login/', RedirectView.as_view(url='/account/login/')),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('password_change/',
        auth_views.PasswordChangeView.as_view(
            template_name='accounts/password_change_form.html'),
