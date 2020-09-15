@@ -3,13 +3,14 @@
 
 {% block bootstrap4_extra_head %}
 {{ block.super }}
+<script defer src="{% static 'fontawesome/css/all.min.css' %}"></script>
 <link rel="shortcut icon" type="image/png" href="{% static 'paperless/img/favicon.ico' %}"/>
 <link rel="stylesheet" href="{% static 'documents/css/frontend.css' %}">
 {% endblock %}
 
 {% block bootstrap4_extra_script %}
 {{ block.super }}
-<script src="https://kit.fontawesome.com/d29690e050.js" crossorigin="anonymous"></script>
+<script defer src="{% static 'fontawesome/js/all.min.js' %}"></script>
 {% dm2bn_settings %}
 <script type="text/javascript" src="/static/dm2bn/vendor/bootstrap-notify/bootstrap-notify.min.js"></script>
 <script type="text/javascript" src="/static/dm2bn/vendor/striptags/striptags.js"></script>

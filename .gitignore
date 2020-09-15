@@ -82,3 +82,5 @@ scripts/nuke
 
 # Static files collected by the collectstatic command
 ./static/
+
+fontawesome/
