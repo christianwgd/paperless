@@ -76,7 +76,10 @@ urlpatterns = [
     # Favicon
     re_path(r"^favicon.ico$", FaviconView.as_view(), name="favicon"),
 
-] + static.static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+if settings.DEBUG:
+    print(settings.DEBUG)
+    urlpatterns += static.static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # Text in each page's <h1> (and above login form).
 admin.site.site_header = 'Paperless'

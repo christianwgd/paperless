@@ -54,8 +54,6 @@ SECRET_KEY = os.getenv(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = __get_boolean("PAPERLESS_DEBUG", "YES")
 
-LOGIN_URL = "admin:login"
-
 ALLOWED_HOSTS = ["*"]
 
 _allowed_hosts = os.getenv("PAPERLESS_ALLOWED_HOSTS")
@@ -132,9 +130,9 @@ CORS_ALLOWED_ORIGINS = tuple(os.getenv(
 
 
 # If auth is disabled, we just use our "bypass" authentication middleware
-if bool(os.getenv("PAPERLESS_DISABLE_LOGIN", "false").lower() in ("yes", "y", "1", "t", "true")):
-    _index = MIDDLEWARE.index("django.contrib.auth.middleware.AuthenticationMiddleware")
-    MIDDLEWARE[_index] = "paperless.middleware.Middleware"
+# if bool(os.getenv("PAPERLESS_DISABLE_LOGIN", "false").lower() in ("yes", "y", "1", "t", "true")):
+#     _index = MIDDLEWARE.index("django.contrib.auth.middleware.AuthenticationMiddleware")
+#     MIDDLEWARE[_index] = "paperless.middleware.Middleware"
 
 ROOT_URLCONF = 'paperless.urls'
 
