@@ -5,7 +5,7 @@
 {{ block.super }}
 <div class="side-preview">
   <h2>Preview</h2>
-	<img class="preview mx-auto d-block" src="/fetch/preview/{{ object_id }}">
+	<object data="/fetch/preview/{{object_id}}"></object>
 </div>
 
 {% if next_object %}

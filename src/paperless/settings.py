@@ -121,7 +121,7 @@ CORS_ALLOWED_ORIGINS = tuple(os.getenv(
     "PAPERLESS_CORS_ALLOWED_HOSTS",
     "http://localhost:8000,https://localhost:8000"
 ).split(","))
-
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 # If auth is disabled, we just use our "bypass" authentication middleware
 # if bool(os.getenv("PAPERLESS_DISABLE_LOGIN", "false").lower() in ("yes", "y", "1", "t", "true")):
