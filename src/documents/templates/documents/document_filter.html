@@ -110,10 +110,14 @@ $(document).ready(function() {
                                 {{ doc.title }}
                                 <span class="badge badge-secondary">{{ visibles.count }}</span>
                             </h6>
-														<p class="small">{{ doc.correspondent|default_if_none:"-" }} / {{ doc.created|date:"SHORT_DATETIME_FORMAT" }}</p>
+														<p class="small">
+															<a href="{% url 'documents:list' %}?correspondent={{ doc.correspondent.id }}">
+																{{ doc.correspondent|default_if_none:"-" }}
+															</a>
+															/ {{ doc.created|date:"SHORT_DATETIME_FORMAT" }}</p>
 														<div class="tags">
 															{% for tag in doc.tags.all %}
-																<span class="badge" style="background-color: {{ tag.get_colour_display }};">{{ tag }}</span>
+																<a href="{% url 'documents:list' %}?tags={{ tag.id }}"><span class="badge" style="background-color: {{ tag.get_colour_display }};">{{ tag }}</span></a>
 															{% endfor %}
 														</div>
                         </div>
