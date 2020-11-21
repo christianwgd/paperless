@@ -18,7 +18,7 @@ class UserSettings(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     paginate_by = models.PositiveSmallIntegerField(
-        default=10, verbose_name=_('Number of items per page'),
+        default=12, verbose_name=_('Number of items per page'),
         help_text=_('0 means no pagination'),
     )
 
