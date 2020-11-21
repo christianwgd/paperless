@@ -111,17 +111,17 @@ $(document).ready(function() {
                                 <span class="badge badge-secondary">{{ visibles.count }}</span>
                             </h6>
 														<p class="small">
-															<a href="?{% param_replace correspondent=doc.correspondent.id %}">
+															<a href="?{% param_replace correspondent=doc.correspondent.id page='' %}">
 																{{ doc.correspondent|default_if_none:"-" }}
 															</a>
 															/
-															<a href="?{% param_replace created_after=doc.created|date:"SHORT_DATE_FORMAT" %}">
+															<a href="?{% param_replace created_after=doc.created|date:'SHORT_DATE_FORMAT' page='' %}">
 																{{ doc.created|date:"SHORT_DATETIME_FORMAT" }}
 															</a>
 														</p>
 														<div class="tags">
 															{% for tag in doc.tags.all %}
-																<a href="?{% param_replace tags=tag.id %}"><span class="badge" style="background-color: {{ tag.get_colour_display }};">{{ tag }}</span></a>
+																<a href="?{% param_replace tags=tag.id page='' %}"><span class="badge" style="background-color: {{ tag.get_colour_display }};">{{ tag }}</span></a>
 															{% endfor %}
 														</div>
                         </div>
