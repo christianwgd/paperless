@@ -3,7 +3,6 @@ from datetime import datetime, timedelta
 from django.conf import settings
 from django.contrib import admin, messages
 from django.contrib.admin.templatetags.admin_urls import add_preserved_filters
-from django.contrib.auth.models import Group, User
 from django.db import models
 from django.http import HttpResponseRedirect
 from django.templatetags.static import static
@@ -352,8 +351,3 @@ admin.site.register(Correspondent, CorrespondentAdmin)
 admin.site.register(Tag, TagAdmin)
 admin.site.register(Document, DocumentAdmin)
 admin.site.register(Log, LogAdmin)
-
-
-# Unless we implement multi-user, these default registrations don't make sense.
-# admin.site.unregister(Group)
-# admin.site.unregister(User)
