@@ -69,26 +69,26 @@ $(document).ready(function() {
 
 <div class="row toolbar-container">
     <div class="col-12 text-center toolbar">
-				<span class="filter-label">{% trans 'Filter' %}: </span>
-				<button class="btn btn-sm btn-secondary" id="filter" title="{% trans 'Filter' %}">
-						<i class="far fa-filter"></i>
-				</button>
-				<a href="{% url 'documents:list' %}" class="btn btn-sm btn-secondary" title="{% trans 'Remove filter' %}">
-						<i class="far fa-times"></i>
-				</a>
-				<span class="sortable-label">{% trans 'Order' %}: </span>
-				{% for sort_link in sort_link_list %}
-					<span class="sort-link {{ sort_link.attrs }}">
-							{% get_sort_link_params sort_link.attrs sort_link.indicator as sort_param %}
-							<a class="btn btn-secondary btn-small btn-sm" href="?{% param_replace sort=sort_param %}">
-								<span class="{{ sort_link.indicator }}">
-										{{ sort_link.title }}
-										{% if sort_link.indicator == 'sort-asc' %}▲{% endif %}
-										{% if sort_link.indicator == 'sort-desc' %}▼{% endif %}
-								</span>
-							</a>
-				</span>
-				{% endfor %}
+        <span class="filter-label">{% trans 'Filter' %}: </span>
+        <button class="btn btn-sm btn-secondary" id="filter" title="{% trans 'Filter' %}">
+                <i class="far fa-filter"></i>
+        </button>
+        <a href="{% url 'documents:list' %}" class="btn btn-sm btn-secondary" title="{% trans 'Remove filter' %}">
+                <i class="far fa-times"></i>
+        </a>
+        <span class="sortable-label">{% trans 'Order' %}: </span>
+        {% for sort_link in sort_link_list %}
+            <span class="sort-link {{ sort_link.attrs }}">
+                    {% get_sort_link_params sort_link.attrs sort_link.indicator as sort_param %}
+                    <a class="btn btn-secondary btn-small btn-sm" href="?{% param_replace sort=sort_param %}">
+                        <span class="{{ sort_link.indicator }}">
+                                {{ sort_link.title }}
+                                {% if sort_link.indicator == 'sort-asc' %}▲{% endif %}
+                                {% if sort_link.indicator == 'sort-desc' %}▼{% endif %}
+                        </span>
+                    </a>
+        </span>
+        {% endfor %}
     </div>
 		<div class="col-12 toolbar">
 			  {% if is_paginated %}
@@ -110,20 +110,20 @@ $(document).ready(function() {
                                 {{ doc.title }}
                                 <span class="badge badge-secondary">{{ visibles.count }}</span>
                             </h6>
-														<p class="small">
-															<a href="?{% param_replace correspondent=doc.correspondent.id page='' %}">
-																{{ doc.correspondent|default_if_none:"-" }}
-															</a>
-															/
-															<a href="?{% param_replace created_after=doc.created|date:'SHORT_DATE_FORMAT' page='' %}">
-																{{ doc.created|date:"SHORT_DATETIME_FORMAT" }}
-															</a>
-														</p>
-														<div class="tags">
-															{% for tag in doc.tags.all %}
-																<a href="?{% param_replace tags=tag.id page='' %}"><span class="badge" style="background-color: {{ tag.get_colour_display }};">{{ tag }}</span></a>
-															{% endfor %}
-														</div>
+                                <p class="small">
+                                    <a href="?{% param_replace correspondent=doc.correspondent.id page='' %}">
+                                        {{ doc.correspondent|default_if_none:"-" }}
+                                    </a>
+                                    /
+                                    <a href="?{% param_replace created_after=doc.created|date:'SHORT_DATE_FORMAT' page='' %}">
+                                        {{ doc.created|date:"SHORT_DATETIME_FORMAT" }}
+                                    </a>
+                                </p>
+                                <div class="tags">
+                                    {% for tag in doc.tags.all %}
+                                        <a href="?{% param_replace tags=tag.id page='' %}"><span class="badge" style="background-color: {{ tag.get_colour_display }};">{{ tag }}</span></a>
+                                    {% endfor %}
+                                </div>
                         </div>
                         <div class="card-body">
 														<a href="{% url 'documents:detail' doc.id %}">
