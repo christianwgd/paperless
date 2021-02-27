@@ -168,15 +168,15 @@ class DocumentFilterView(LoginRequiredMixin, FilterView, SortableListView):
             'verbose_name': _('Title')
         },
         'created': {
-            'default_direction': '',
+            'default_direction': '-',
             'verbose_name': _('Created')
         },
         'added': {
-            'default_direction': '',
+            'default_direction': '-',
             'verbose_name': _('Added')
         },
     }
-    default_sort_field = '-added'
+    default_sort_field = 'added'
 
     def get_paginate_by(self, queryset):
         """

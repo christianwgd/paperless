@@ -46,22 +46,22 @@ $(document).ready(function() {
         <div class="modal-content">
 
         <!-- Modal Header -->
-        <div class="modal-header">
-            <h4 class="modal-title">{% trans 'Filter' %}</h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
+            <div class="modal-header">
+                <h4 class="modal-title">{% trans 'Filter' %}</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
 
-        <!-- Modal body -->
-        <div class="modal-body">
-            <form action="" method="get" id="filterForm">
-							  {% csrf_token %}
-							  {% bootstrap_field filter.form.correspondent %}
-							  {% bootstrap_field filter.form.tags %}
-								{% bootstrap_field filter.form.created %}
-								{% bootstrap_field filter.form.added %}
-								{% bootstrap_button "<i class='far fa-filter'></i>" button_type="submit" button_class="btn-primary" %}
-            </form>
-        </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form action="" method="get" id="filterForm">
+                    {% csrf_token %}
+                    {% bootstrap_field filter.form.correspondent %}
+                    {% bootstrap_field filter.form.tags %}
+                    {% bootstrap_field filter.form.created %}
+                    {% bootstrap_field filter.form.added %}
+                    {% bootstrap_button "<i class='far fa-filter'></i>" button_type="submit" button_class="btn-primary" %}
+                </form>
+            </div>
 
         </div>
     </div>
@@ -71,29 +71,29 @@ $(document).ready(function() {
     <div class="col-12 text-center toolbar">
         <span class="filter-label">{% trans 'Filter' %}: </span>
         <button class="btn btn-sm btn-secondary" id="filter" title="{% trans 'Filter' %}">
-                <i class="far fa-filter"></i>
+            <i class="far fa-filter"></i>
         </button>
         <a href="{% url 'documents:list' %}" class="btn btn-sm btn-secondary" title="{% trans 'Remove filter' %}">
-                <i class="far fa-times"></i>
+            <i class="far fa-times"></i>
         </a>
         <span class="sortable-label">{% trans 'Order' %}: </span>
         {% for sort_link in sort_link_list %}
             <span class="sort-link {{ sort_link.attrs }}">
-                    {% get_sort_link_params sort_link.attrs sort_link.indicator as sort_param %}
-                    <a class="btn btn-secondary btn-small btn-sm" href="?{% param_replace sort=sort_param %}">
-                        <span class="{{ sort_link.indicator }}">
-                                {{ sort_link.title }}
-                                {% if sort_link.indicator == 'sort-asc' %}▲{% endif %}
-                                {% if sort_link.indicator == 'sort-desc' %}▼{% endif %}
-                        </span>
-                    </a>
+                {% get_sort_link_params sort_link.attrs sort_link.indicator as sort_param %}
+                <a class="btn btn-secondary btn-small btn-sm" href="?{% param_replace sort=sort_param %}">
+                    <span class="{{ sort_link.indicator }}">
+                        {{ sort_link.title }}
+                        {% if sort_link.indicator == 'sort-asc' %}▲{% endif %}
+                        {% if sort_link.indicator == 'sort-desc' %}▼{% endif %}
+                    </span>
+                </a>
         </span>
         {% endfor %}
     </div>
 		<div class="col-12 toolbar">
-			  {% if is_paginated %}
-				{% bootstrap_paginate page_obj range=10 size="small" previous_label='<i class="far fa-arrow-alt-left"></i>' next_label='<i class="far fa-arrow-alt-right"></i>' extra_pagination_classes="justify-content-center" %}
-				{% endif %}
+            {% if is_paginated %}
+            {% bootstrap_paginate page_obj range=10 size="small" previous_label='<i class="far fa-arrow-alt-left"></i>' next_label='<i class="far fa-arrow-alt-right"></i>' extra_pagination_classes="justify-content-center" %}
+			{% endif %}
 		</div>
 </div>
 
@@ -126,9 +126,9 @@ $(document).ready(function() {
                                 </div>
                         </div>
                         <div class="card-body">
-														<a href="{% url 'documents:detail' doc.id %}">
+                            <a href="{% url 'documents:detail' doc.id %}">
                             	  <img class="img-thumbnail" src="/fetch/thumb/{{ doc.id }}" alt="{{ doc.name }}">
-														</a>
+                            </a>
                         </div>
                     </div>
                     {% endfor %}
