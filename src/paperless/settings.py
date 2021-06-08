@@ -224,6 +224,8 @@ LOGIN_URL = reverse_lazy('two_factor:login')
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
 # Other
 
 # Settings for django-bootstrap4
