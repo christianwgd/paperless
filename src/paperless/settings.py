@@ -282,7 +282,7 @@ FORGIVING_OCR = __get_boolean("PAPERLESS_FORGIVING_OCR")
 
 # GNUPG needs a home directory for some reason
 GNUPG_HOME = os.getenv("HOME", "/tmp")
-GNUPG_BINARY = os.getenv("GNUPG_BINARY", "/usr/local/opt/gnupg/bin/gpg")
+GNUPG_BINARY = os.getenv("GNUPG_BINARY", "/opt/homebrew/bin/gpg")
 
 # Convert is part of the ImageMagick package
 CONVERT_BINARY = os.getenv("PAPERLESS_CONVERT_BINARY", "convert")

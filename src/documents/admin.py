@@ -8,7 +8,7 @@ from django.http import HttpResponseRedirect
 from django.templatetags.static import static
 from django.urls import reverse
 from django.utils.html import format_html, format_html_join
-from django.utils.http import urlquote
+from django.utils.http import quote
 from django.utils.safestring import mark_safe
 from djangoql.admin import DjangoQLSearchMixin
 from django.utils.translation import gettext_lazy as _
@@ -254,7 +254,7 @@ class DocumentAdmin(DjangoQLSearchMixin, CommonAdmin):
             "name": opts.verbose_name,
             "obj": format_html(
                 '<a href="{}">{}</a>',
-                urlquote(request.path),
+                quote(request.path),
                 obj
             ),
         }
