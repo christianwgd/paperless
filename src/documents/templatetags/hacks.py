@@ -6,7 +6,6 @@ from django.contrib.admin.templatetags.admin_list import (
     results
 )
 from django.template import Library
-from django.utils.safestring import mark_safe
 
 EXTRACT_URL = re.compile(r'href="(.*?)"')
 

@@ -13,6 +13,7 @@ from django.db import models
 from django.template.defaultfilters import slugify
 from django.utils import timezone
 from django.utils.text import slugify
+from django.contrib import auth
 from django.utils.translation import gettext_lazy as _
 from fuzzywuzzy import fuzz
 from collections import defaultdict
@@ -23,6 +24,9 @@ try:
     from django.core.urlresolvers import reverse
 except ImportError:
     from django.urls import reverse
+
+
+User = auth.get_user_model()
 
 
 class MatchingModel(models.Model):
@@ -290,6 +294,8 @@ class Document(models.Model):
         verbose_name=_('Filename'),
         help_text=_("Current filename in storage")
     )
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
     class Meta:
         ordering = ("correspondent", "title")

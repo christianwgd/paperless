@@ -25,7 +25,7 @@ class UserSettings(models.Model):
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     try:
-        user_settings = UserSettings.objects.get(user=instance)
+        UserSettings.objects.get(user=instance)
     except UserSettings.DoesNotExist:
         UserSettings.objects.create(
             user = instance,

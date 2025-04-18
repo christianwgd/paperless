@@ -1,16 +1,11 @@
-import datetime
 import os
 import shutil
-from unittest import mock
 from uuid import uuid4
 from pathlib import Path
-from shutil import rmtree
 
-from dateutil import tz
 from django.test import TestCase, override_settings
 
-from django.utils.text import slugify
-from ..models import Tag, Document, Correspondent
+from ..models import Document, Correspondent
 from django.conf import settings
 
 
@@ -510,7 +505,7 @@ class TestDate(TestCase):
         document.save()
 
         # Ensure that filename is properly generated
-        tmp = document.source_filename
+        # tmp = document.source_filename
         self.assertEqual(document.generate_source_filename(),
                          "none/none-0000001.pdf")
         document.create_source_directory()

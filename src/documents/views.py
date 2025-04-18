@@ -2,7 +2,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.urls import reverse
-from django.views.decorators.clickjacking import xframe_options_sameorigin
 from django.views.generic import DetailView, FormView, TemplateView, UpdateView
 from django_filters.rest_framework import DjangoFilterBackend
 from django.conf import settings
@@ -28,6 +27,7 @@ from rest_framework.viewsets import (
 )
 from sortable_listview import SortableListView
 
+from .cbvmixins import RestrictToOwnMixin
 from .filters import CorrespondentFilterSet, DocumentFilterSet, TagFilterSet, \
     DocumentFilter
 from .forms import UploadForm, DocumentUpdateForm
@@ -178,6 +178,10 @@ class DocumentFilterView(LoginRequiredMixin, FilterView, SortableListView):
     }
     default_sort_field = 'added'
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(user=self.request.user)
+
     def get_paginate_by(self, queryset):
         """
         Paginate by specified value in querystring, or use default class property value.
@@ -188,11 +192,11 @@ class DocumentFilterView(LoginRequiredMixin, FilterView, SortableListView):
         return paginate_by
 
 
-class DocumentDetailView(LoginRequiredMixin, DetailView):
+class DocumentDetailView(RestrictToOwnMixin, DetailView):
     model = Document
 
 
-class DocumentUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+class DocumentUpdateView(RestrictToOwnMixin, SuccessMessageMixin, UpdateView):
     model = Document
     form_class = DocumentUpdateForm
     success_message = _('Document metadata changed.')
