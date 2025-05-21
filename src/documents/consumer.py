@@ -40,7 +40,7 @@ class Consumer:
     # for this duration
     FILES_MIN_UNMODIFIED_DURATION = 0.5
 
-    def __init__(self, consume=settings.CONSUMPTION_DIR,
+    def __init__(self, consume=settings.CONSUMPTION_DIR, user=None,
                  scratch=settings.SCRATCH_DIR):
 
         self.logger = logging.getLogger(__name__)
@@ -48,6 +48,7 @@ class Consumer:
 
         self._ignore = []
         self.consume = consume
+        self.user = user
         self.scratch = scratch
 
         os.makedirs(self.scratch, exist_ok=True)
@@ -228,7 +229,8 @@ class Consumer:
                 checksum=hashlib.md5(f.read()).hexdigest(),
                 created=created,
                 modified=created,
-                storage_type=self.storage_type
+                storage_type=self.storage_type,
+                user=self.user,
             )
 
         relevant_tags = set(list(Tag.match_all(text)) + list(file_info.tags))

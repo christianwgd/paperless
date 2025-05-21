@@ -10,7 +10,6 @@ import dateutil.parser
 from django.dispatch import receiver
 from django.conf import settings
 from django.db import models
-from django.template.defaultfilters import slugify
 from django.utils import timezone
 from django.utils.text import slugify
 from django.contrib import auth

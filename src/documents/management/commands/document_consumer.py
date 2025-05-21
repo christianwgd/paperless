@@ -4,6 +4,7 @@ import time
 
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
+from django.contrib import auth
 
 from ...consumer import Consumer, ConsumerError
 from ...mail import MailFetcher, MailFetcherError
@@ -12,6 +13,8 @@ try:
     from inotify_simple import INotify, flags
 except ImportError:
     INotify = flags = None
+
+User = auth.get_user_model()
 
 
 class Command(BaseCommand):
@@ -28,6 +31,7 @@ class Command(BaseCommand):
         self.verbosity = 0
         self.logger = logging.getLogger(__name__)
 
+        self.user = None
         self.file_consumer = None
         self.mail_fetcher = None
         self.first_iteration = True
@@ -40,6 +44,15 @@ class Command(BaseCommand):
             default=settings.CONSUMPTION_DIR,
             nargs="?",
             help="The consumption directory."
+        )
+        parser.add_argument(
+            "--user",
+            default=None,
+            type=str,
+            help=(
+                "Consume document for user. The user "
+                 "is added to the default directory."
+            )
         )
         parser.add_argument(
             "--loop-time",
@@ -69,12 +82,13 @@ class Command(BaseCommand):
 
         self.verbosity = options["verbosity"]
         directory = options["directory"]
+        user = User.objects.get(username=options["user"])
         loop_time = options["loop_time"]
         mail_delta = options["mail_delta"] * 60
         use_inotify = INotify is not None and options["no_inotify"] is False
 
         try:
-            self.file_consumer = Consumer(consume=directory)
+            self.file_consumer = Consumer(consume=directory, user=user)
             self.mail_fetcher = MailFetcher(consume=directory)
         except (ConsumerError, MailFetcherError) as e:
             raise CommandError(e)
@@ -83,9 +97,10 @@ class Command(BaseCommand):
             os.makedirs(d, exist_ok=True)
 
         logging.getLogger(__name__).info(
-            "Starting document consumer at {}{}".format(
+            "Starting document consumer at {}{} for user {}".format(
                 directory,
-                " with inotify" if use_inotify else ""
+                " with inotify" if use_inotify else "",
+                user
             )
         )
 
