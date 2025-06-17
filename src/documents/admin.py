@@ -202,9 +202,6 @@ class DocumentAdmin(DjangoQLSearchMixin, CommonAdmin):
         super().__init__(*args, **kwargs)
         self.document_queue = []
 
-    def has_add_permission(self, request):
-        return False
-
     def created_(self, obj):
         return obj.created.date().strftime("%Y-%m-%d")
     created_.short_description = "Created"
